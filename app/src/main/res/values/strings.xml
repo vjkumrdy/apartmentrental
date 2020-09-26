@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Findinganapartment</string>
+    <string name="app_name">FindingAnapartment</string>
+
+    <string name="Open">Open navigation drawer</string>
+    <string name="Close">Close navigation drawer</string>
+
+    <string-array name="registration">
+        <item>Who are you</item>
+        <item>Tenant</item>
+        <item>Land Lord</item>
+    </string-array>
+
+    <string name="upload_image">UPLOAD IMAGE</string>
+    <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
+
 </resources>

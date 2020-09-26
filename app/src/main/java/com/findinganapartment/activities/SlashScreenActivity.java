@@ -1,18 +1,20 @@
-package com.findinganapartment;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.findinganapartment.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-public class SplashScreenActivity extends AppCompatActivity {
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.findinganapartment.R;
+
+public class SlashScreenActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_splashscreen);
         getSupportActionBar().hide();
-        final int ScreenDisplay = 3000;
+        final int ScreenDisplay = 1500;
         Thread t1=new Thread(){
             int wait1=0;
             public void run(){
@@ -27,8 +29,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finally{
-                    Intent i= new Intent(SplashScreenActivity.this, LoginActivity.class);
-                    startActivity(i);
+                    Intent intentg= new Intent(SlashScreenActivity.this, LoginActivity.class);
+                    startActivity(intentg);
                     finish();
 
                 }
