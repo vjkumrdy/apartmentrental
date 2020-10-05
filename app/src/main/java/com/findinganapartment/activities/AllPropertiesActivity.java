@@ -1,20 +1,16 @@
-package com.findinganapartment.fragment;
+package com.findinganapartment.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
+import com.findinganapartment.adapters.AllPropertiesAdapter;
 import com.findinganapartment.adapters.HomeAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
@@ -27,40 +23,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class AllPropertiesActivity extends AppCompatActivity {
     RecyclerView property_recyclerView;
     List<PropertyPojo> a1;
-    HomeAdapter homeAdapter;
+    AllPropertiesAdapter allPropertiesAdapter;
     ProgressDialog progressDialog;
-    View view;
 
-    public static HomeFragment homeFragment() {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.fragment_home, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_property_screen);
+
+        getSupportActionBar().setTitle(" Properties");
 
 
-        property_recyclerView = (RecyclerView)view.findViewById(R.id.property_recyclerView);
+        property_recyclerView = (RecyclerView)findViewById(R.id.property_recyclerView);
         a1 = new ArrayList<>();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AllPropertiesActivity.this, LinearLayoutManager.VERTICAL,false);
         property_recyclerView.setLayoutManager(linearLayoutManager);
         serverData();
 
 
-
-
-        return view;
     }
-
     public void serverData(){
-        progressDialog = new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(AllPropertiesActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
@@ -71,18 +58,18 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {
                 progressDialog.dismiss();
                 if(response.body()==null){
-                    Toast.makeText(getContext(),"No data found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AllPropertiesActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    homeAdapter=new HomeAdapter(getActivity(),a1);  //attach adapter class with therecyclerview
-                    property_recyclerView.setAdapter(homeAdapter);
+                    allPropertiesAdapter=new AllPropertiesAdapter(AllPropertiesActivity.this,a1);  //attach adapter class with therecyclerview
+                    property_recyclerView.setAdapter(allPropertiesAdapter);
                 }
             }
 
             @Override
             public void onFailure(Call<List<PropertyPojo>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AllPropertiesActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }

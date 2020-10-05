@@ -17,12 +17,12 @@ import com.findinganapartment.models.PropertyPojo;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> {
+public class AllPropertiesAdapter extends RecyclerView.Adapter<AllPropertiesAdapter.MyviewHolder> {
 
     Context context;
     List<PropertyPojo> a1;
 
-    public HomeAdapter(Context context, List<PropertyPojo> categoty) {
+    public AllPropertiesAdapter(Context context, List<PropertyPojo> categoty) {
         this.context = context;
         this.a1 = categoty;
     }
@@ -34,7 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
 
     @Override
     public MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_home, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_all_properties, parent, false);
         return new MyviewHolder(view);
     }
 
@@ -42,8 +42,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
         holder.tv_price.setText(a1.get(pos).getP_price());
-        holder.tv_time_spam.setText(" -"+a1.get(pos).getP_name());
+        holder.tv_time_spam.setText(" -  "+a1.get(pos).getP_name());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
+        holder.tv_baths.setText(a1.get(pos).getP_bath());
+
         holder.tv_pets.setText(a1.get(pos).getP_pets());
         holder.tv_sq_feet.setText(a1.get(pos).getP_area());
         holder.tv_apart_type.setText(a1.get(pos).getP_type());

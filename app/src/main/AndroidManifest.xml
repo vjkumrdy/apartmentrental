@@ -24,10 +24,13 @@
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.RegistrationActivity"></activity>
         <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.AdminEditProfileActivity"></activity>
         <activity android:name=".activities.ForgotPasswordActivity"></activity>
         <activity android:name=".activities.EditYourProfileActivity"></activity>
-        <activity android:name=".activities.PropertyScreenActivity"></activity>
+        <activity android:name=".activities.AllPropertiesActivity"></activity>
+
+        <activity android:name=".activities.AdminDashboardActivity"></activity>
+        <activity android:name=".activities.AddPropertyActivity"></activity>
     </application>
 
 </manifest>

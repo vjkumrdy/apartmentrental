@@ -115,7 +115,6 @@
         android:textAllCaps="false"
         android:textSize="18sp"
         android:text="Guest User"
-
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

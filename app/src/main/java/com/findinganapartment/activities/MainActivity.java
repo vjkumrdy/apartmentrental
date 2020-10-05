@@ -79,10 +79,34 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
+                    case R.id.home:
+                        Intent home=new Intent(getApplicationContext(), EditYourProfileActivity.class);
+                        startActivity(home);
+                        break;
+
+
                     case R.id.myprofile:
                         Intent intent=new Intent(getApplicationContext(), EditYourProfileActivity.class);
                         startActivity(intent);
                         break;
+
+                    case R.id.property_list:
+                        Intent prop_list=new Intent(getApplicationContext(), AllPropertiesActivity.class);
+                        startActivity(prop_list);
+                        break;
+
+
+                    case R.id.search_properties:
+                        Intent search_prop=new Intent(getApplicationContext(), EditYourProfileActivity.class);
+                        startActivity(search_prop);
+                        break;
+
+
+                    case R.id.wish_list:
+                        Intent wish_list=new Intent(getApplicationContext(), EditYourProfileActivity.class);
+                        startActivity(wish_list);
+                        break;
+
 
 
                     case R.id.logout:

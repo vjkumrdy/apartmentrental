@@ -17,12 +17,12 @@ import com.findinganapartment.models.PropertyPojo;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> {
+public class AdminDashboardAdapter extends RecyclerView.Adapter<AdminDashboardAdapter.MyviewHolder> {
 
     Context context;
     List<PropertyPojo> a1;
 
-    public HomeAdapter(Context context, List<PropertyPojo> categoty) {
+    public AdminDashboardAdapter(Context context, List<PropertyPojo> categoty) {
         this.context = context;
         this.a1 = categoty;
     }
@@ -34,7 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
 
     @Override
     public MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_home, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_dashboard, parent, false);
         return new MyviewHolder(view);
     }
 

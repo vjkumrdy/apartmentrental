@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         login_guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,PropertyScreenActivity.class);
+                Intent intent=new Intent(LoginActivity.this, AllPropertiesActivity.class);
                 startActivity(intent);
 
             }
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Please Enter Password", LENGTH_SHORT).show();
                         return;
                     }
-                    loginData();
+                    tenantloginData();
 
                 }
                 else if(cb_land_lord.isChecked()){
@@ -103,7 +103,8 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Please Enter Password", LENGTH_SHORT).show();
                         return;
                     }*/
-                    Toast.makeText(LoginActivity.this, "Check Box Clicked", LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, "Check Box Clicked", LENGTH_SHORT).show();
+                    landLordloginData();
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "Select Login Type above", LENGTH_SHORT).show();
@@ -112,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    public  void loginData() {
+    public  void tenantloginData() {
         pd= new ProgressDialog(LoginActivity.this);
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
@@ -142,5 +143,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    public  void landLordloginData() {
+        pd = new ProgressDialog(LoginActivity.this);
+        pd.setTitle("Please wait,Data is being submit...");
+        pd.show();
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+        Call<ResponseData> call = apiService.adminlogin(et_email.getText().toString(), et_password.getText().toString());
+        call.enqueue(new Callback<ResponseData>() {
+            @Override
+            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+                pd.dismiss();
+                if (response.body().status.equals("true")) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor et = sharedPreferences.edit();
+                    et.putString("uname", et_email.getText().toString());
+                    et.commit();
+                    startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
+                    //Toast.makeText(LoginActivity.this, "Successfully login", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, response.body().message, Toast.LENGTH_LONG).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseData> call, Throwable t) {
+                pd.dismiss();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 }
