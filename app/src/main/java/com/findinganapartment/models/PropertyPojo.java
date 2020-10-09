@@ -114,5 +114,16 @@ public class PropertyPojo {
     @SerializedName("p_type")
     private String p_type;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @SerializedName("status")
+    private String status;
+
 
 }

@@ -23,14 +23,17 @@
         </activity>
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.RegistrationActivity"></activity>
+        <activity android:name=".activities.LandLordDashboardActivity"></activity>
+        <activity android:name=".activities.AdminDashboardActivity"></activity>
+        <activity android:name=".activities.AdminLoginActivity"></activity>
+
         <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.AdminEditProfileActivity"></activity>
+        <activity android:name=".activities.AddPropertyActivity"></activity>
+        <activity android:name=".activities.LandLordEditProfileActivity"></activity>
         <activity android:name=".activities.ForgotPasswordActivity"></activity>
         <activity android:name=".activities.EditYourProfileActivity"></activity>
         <activity android:name=".activities.AllPropertiesActivity"></activity>
-
-        <activity android:name=".activities.AdminDashboardActivity"></activity>
-        <activity android:name=".activities.AddPropertyActivity"></activity>
+        <activity android:name=".activities.AdminEditProfileActivity"></activity>
     </application>
 
 </manifest>

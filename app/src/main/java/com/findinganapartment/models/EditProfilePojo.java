@@ -3,8 +3,6 @@ package com.findinganapartment.models;
 import com.google.gson.annotations.SerializedName;
 
 public class EditProfilePojo {
-    @SerializedName("name")
-    private String name ;
 
     public String getName() {
         return name;
@@ -22,30 +20,55 @@ public class EditProfilePojo {
         this.email = email;
     }
 
-    public String getPhono() {
-        return phono;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhono(String phono) {
-        this.phono = phono;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getRole() {
+        return role;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setRole(String role) {
+        this.role = role;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    @SerializedName("name")
+    private String name;
 
     @SerializedName("email")
-    private String email ;
+    private String email;
 
-    @SerializedName("phono")
-    private String phono ;
+    @SerializedName("phone")
+    private String phone;
 
-    @SerializedName("pwd")
-    private String pwd ;
+    @SerializedName("role")
+    private String role;
+
+    @SerializedName("password")
+    private String password;
+
+    @SerializedName("photo")
+    private String photo;
 
 
 }

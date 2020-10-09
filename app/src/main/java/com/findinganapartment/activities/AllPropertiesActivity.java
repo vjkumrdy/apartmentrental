@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
 import com.findinganapartment.adapters.AllPropertiesAdapter;
-import com.findinganapartment.adapters.HomeAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.PropertyPojo;

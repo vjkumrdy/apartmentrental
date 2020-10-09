@@ -25,20 +25,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
 public class LoginActivity extends AppCompatActivity {
     TextView tv_sign_up,tv_forget_pass;
-    Button login_btn,login_guest;
+    Button login_btn,login_guest,login_admin;
     EditText et_email,et_password;
     CheckBox cb_tenant,cb_land_lord;
     ProgressDialog pd;
+    String str;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         getSupportActionBar().setTitle("Login");
+
 
         et_email=(EditText)findViewById(R.id.et_email);
         et_password=(EditText)findViewById(R.id.et_password);
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         tv_forget_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                Intent intent=new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
 
             }
@@ -71,8 +71,17 @@ public class LoginActivity extends AppCompatActivity {
         tv_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,RegistrationActivity.class);
+                Intent intent=new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(intent);
+
+            }
+        });
+
+        login_admin=(Button)findViewById(R.id.login_admin);
+        login_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,AdminLoginActivity.class));
 
             }
         });
@@ -80,7 +89,8 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (cb_tenant.isChecked()){
+                checkingTenantLandlord();
+               /* if (cb_tenant.isChecked()){
                     if(et_email.getText().toString().isEmpty()){
                         Toast.makeText(LoginActivity.this, "Please Enter Email", LENGTH_SHORT).show();
                         return;
@@ -94,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
                 else if(cb_land_lord.isChecked()){
-                    /*if(et_email.getText().toString().isEmpty()){
+                    *//*if(et_email.getText().toString().isEmpty()){
                         Toast.makeText(LoginActivity.this, "Please Enter Email", LENGTH_SHORT).show();
                         return;
                     }
@@ -102,23 +112,34 @@ public class LoginActivity extends AppCompatActivity {
                     if(et_password.getText().toString().isEmpty()){
                         Toast.makeText(LoginActivity.this, "Please Enter Password", LENGTH_SHORT).show();
                         return;
-                    }*/
+                    }*//*
                     //Toast.makeText(LoginActivity.this, "Check Box Clicked", LENGTH_SHORT).show();
                     landLordloginData();
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "Select Login Type above", LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
 
+
+    }
+    public void checkingTenantLandlord(){
+        if(cb_tenant.isChecked()){
+            str="Tenant";
+            tenantloginData();
+        }
+        else{
+            str="Land Lord";
+            landLordloginData();
+        }
     }
     public  void tenantloginData() {
         pd= new ProgressDialog(LoginActivity.this);
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = apiService.userLogin(et_email.getText().toString(),et_password.getText().toString());
+        Call<ResponseData> call = apiService.userLogin(et_email.getText().toString(),et_password.getText().toString(),str);
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -148,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         pd.setTitle("Please wait,Data is being submit...");
         pd.show();
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = apiService.adminlogin(et_email.getText().toString(), et_password.getText().toString());
+        Call<ResponseData> call = apiService.landlordlogin(et_email.getText().toString(), et_password.getText().toString(),str);
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -158,7 +179,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor et = sharedPreferences.edit();
                     et.putString("uname", et_email.getText().toString());
                     et.commit();
-                    startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
+                    startActivity(new Intent(LoginActivity.this, LandLordDashboardActivity.class));
                     //Toast.makeText(LoginActivity.this, "Successfully login", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
@@ -174,4 +195,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

@@ -1,12 +1,9 @@
 package com.findinganapartment.api;
 
-
-
 import com.findinganapartment.models.EditProfilePojo;
 import com.findinganapartment.models.PropertyPojo;
 import com.findinganapartment.models.ResponseData;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -45,11 +42,19 @@ public interface ApiService {
             @Query("role") String role,
             @Query("pwd") String pwd);*/
 
+    @GET("/rental/landlordlogin.php?")
+    Call<ResponseData> landlordlogin(
+            @Query("email") String email,
+            @Query("pwd") String pwd,
+            @Query("role") String role
+    );
+
 
     @GET("/rental/user_login.php?")
     Call<ResponseData> userLogin(
             @Query("email") String email,
-            @Query("pwd") String pwd
+            @Query("pwd") String pwd,
+            @Query("role") String role
     );
 
     @GET("rental/adminlogin.php?")
@@ -66,8 +71,20 @@ public interface ApiService {
                     @Query("emailid") String emailid
             );
 
+    @GET("/rental/getprofile.php?")
+    Call<List<EditProfilePojo>> getprofile
+            (
+                    @Query("email") String email);
+
     @GET("/rental/getproperties.php")
     Call<List<PropertyPojo>> getproperties();
+
+    @GET("/rental/updatepropertystatus.php")
+    Call<ResponseData> updatepropertystatus(
+            @Query("status") String status,
+            @Query("pid") String pid
+
+    );
 
 
 }

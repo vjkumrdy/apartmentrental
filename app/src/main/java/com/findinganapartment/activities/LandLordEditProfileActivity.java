@@ -8,18 +8,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
+import com.findinganapartment.api.ApiService;
+import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.EditProfilePojo;
 import com.findinganapartment.models.ResponseData;
 
 import java.util.List;
 
-public class EditYourProfileActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class LandLordEditProfileActivity extends AppCompatActivity {
     EditText et_name,et_email,et_phno,et_pwd;
     ProgressDialog progressDialog;
     List<EditProfilePojo> a1;
@@ -30,7 +37,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editprofile);
+        setContentView(R.layout.activity_land_lord_profile);
 
         getSupportActionBar().setTitle("Edit Profile");
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -50,18 +57,18 @@ public class EditYourProfileActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // submitData();
+                //submitData();
             }
         });
-        //et_email.setText(session);
+        et_email.setText(session);
 
 
-      /* progressDialog = new ProgressDialog(EditYourProfileActivity.this);
+       progressDialog = new ProgressDialog(LandLordEditProfileActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<EditProfilePojo>> call = service.getMyProfile(session);
+        Call<List<EditProfilePojo>> call = service.getprofile(session);
 
         call.enqueue(new Callback<List<EditProfilePojo>>() {
             @Override
@@ -69,26 +76,22 @@ public class EditYourProfileActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
                 a1 = response.body();
-                // Toast.makeText(getApplicationContext(),""+response.body().size(),Toast.LENGTH_LONG).show();
                 EditProfilePojo user = a1.get(0);
 
                 et_name.setText(user.getName());
-
                 et_email.setText(user.getEmail());
-
-                et_phno.setText(user.getPhono());
-
-                et_pwd.setText(user.getPwd());
+                et_phno.setText(user.getPhone());
+                et_pwd.setText(user.getPassword());
 
             }
 
             @Override
             public void onFailure(Call<List<EditProfilePojo>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(EditYourProfileActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LandLordEditProfileActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });*/
-   }
+        });
+    }
    /* private void submitData() {
         String name = et_name.getText().toString();
         String email = et_email.getText().toString();

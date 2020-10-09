@@ -41,5 +41,10 @@
         <item>Allowed</item>
         <item>Not Allowed</item>
     </string-array>
+    <string-array name="location">
+        <item>Please Select Locoation</item>
+        <item>Hyderabad</item>
+        <item>Vijayawada</item>
+    </string-array>
 
 </resources>
