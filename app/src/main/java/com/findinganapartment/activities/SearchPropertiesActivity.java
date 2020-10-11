@@ -54,7 +54,7 @@ public class SearchPropertiesActivity extends AppCompatActivity {
     }
     public void serverData(){
         progressDialog = new ProgressDialog(SearchPropertiesActivity.this);
-        progressDialog.setMessage("Loading....");
+        progressDialog.setMessage("Loading plz wait....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
