@@ -1,5 +1,11 @@
 package com.findinganapartment.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,10 +13,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.findinganapartment.R;
 import com.findinganapartment.fragment.HomeFragment;
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void navigationView(){
         dl = (DrawerLayout)findViewById(R.id.activity_main);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.search_properties:
-                        Intent search_prop=new Intent(getApplicationContext(), EditYourProfileActivity.class);
+                        Intent search_prop=new Intent(getApplicationContext(), SearchPropertiesActivity.class);
                         startActivity(search_prop);
                         break;
 
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.logout:
                         Intent logout=new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(logout);
+                        finish();
                         break;
 
                     default:
@@ -128,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
         if (dl.isDrawerOpen(GravityCompat.START)) {
             dl.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            alertDiolouge();
         }
     }
 
@@ -141,6 +145,33 @@ public class MainActivity extends AppCompatActivity {
             dl.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void alertDiolouge(){
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+        builder1.setTitle("Alert !!!");
+        builder1.setMessage("Do you want to close the Application.");  //message we want to show the end user
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel(); //cancle the alert dialog box
+                        finish();//finish the process
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 
 }

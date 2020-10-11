@@ -34,6 +34,7 @@
         <activity android:name=".activities.EditYourProfileActivity"></activity>
         <activity android:name=".activities.AllPropertiesActivity"></activity>
         <activity android:name=".activities.AdminEditProfileActivity"></activity>
+        <activity android:name=".activities.SearchPropertiesActivity"></activity>
     </application>
 
 </manifest>

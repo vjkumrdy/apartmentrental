@@ -34,6 +34,9 @@ public interface ApiService {
 
     );
 
+    @GET("/rental/userviewpropertylist.php")
+    Call<List<PropertyPojo>> userviewpropertylist();
+
     /*@GET("rental/user_registration.php?")
     Call<ResponseData> userRegistration(
             @Query("name") String name,

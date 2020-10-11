@@ -25,6 +25,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class LoginActivity extends AppCompatActivity {
     TextView tv_sign_up,tv_forget_pass;
     Button login_btn,login_guest,login_admin;
@@ -81,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         login_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,AdminLoginActivity.class));
+                startActivity(new Intent(LoginActivity.this, AdminLoginActivity.class));
 
             }
         });
@@ -90,35 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkingTenantLandlord();
-               /* if (cb_tenant.isChecked()){
-                    if(et_email.getText().toString().isEmpty()){
-                        Toast.makeText(LoginActivity.this, "Please Enter Email", LENGTH_SHORT).show();
-                        return;
-                    }
 
-                    if(et_password.getText().toString().isEmpty()){
-                        Toast.makeText(LoginActivity.this, "Please Enter Password", LENGTH_SHORT).show();
-                        return;
-                    }
-                    tenantloginData();
-
-                }
-                else if(cb_land_lord.isChecked()){
-                    *//*if(et_email.getText().toString().isEmpty()){
-                        Toast.makeText(LoginActivity.this, "Please Enter Email", LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if(et_password.getText().toString().isEmpty()){
-                        Toast.makeText(LoginActivity.this, "Please Enter Password", LENGTH_SHORT).show();
-                        return;
-                    }*//*
-                    //Toast.makeText(LoginActivity.this, "Check Box Clicked", LENGTH_SHORT).show();
-                    landLordloginData();
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "Select Login Type above", LENGTH_SHORT).show();
-                }*/
             }
         });
 
@@ -129,9 +103,12 @@ public class LoginActivity extends AppCompatActivity {
             str="Tenant";
             tenantloginData();
         }
-        else{
+        else if (cb_land_lord.isChecked()){
             str="Land Lord";
             landLordloginData();
+        }
+        else{
+            Toast.makeText(this, "Please Choose Role", LENGTH_SHORT).show();
         }
     }
     public  void tenantloginData() {
