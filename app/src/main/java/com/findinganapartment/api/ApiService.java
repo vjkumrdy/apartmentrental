@@ -88,6 +88,14 @@ public interface ApiService {
             @Query("pid") String pid
 
     );
+    @GET("/rental/deleteproperty.php?")
+    Call<ResponseData> deleteproperty(
+            @Query("id") String id
+
+    );
+
+    @GET("/rental/getmyproperties.php?")
+    Call<List<PropertyPojo>> getmyproperties(@Query("email") String email);
 
 
 }

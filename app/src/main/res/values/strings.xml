@@ -12,6 +12,8 @@
 
     <string name="upload_image">UPLOAD IMAGE</string>
     <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
+    <string name="property_desc">Being you, luxury is nothing new. For a high-Flyer, you\'ve always experienced life at the very top with premium 3 bhk  4 bhk luxurious flats in hyderabad. And now we take it many notches higher - By 36 floors! At my home bhooja, luxury property sees even greater heights. Spread across 18 acres. My home bhooja, gated community in hyderabad with exclusive 3bhk flats  4bhk flats is situated in most premium location - Hitec city. Our contemporary towers don\'t just breathe luxury, but also boast of a magnificent view of the bio-Diversity park on one side, and the cityscape on the other</string>
+
 
     <string-array name="property_type">
         <item>Select Property Type</item>
