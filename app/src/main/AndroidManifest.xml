@@ -29,6 +29,7 @@
 
         <activity android:name=".activities.MainActivity"></activity>
         <activity android:name=".activities.AddPropertyActivity"></activity>
+        <activity android:name=".activities.LandLordEditProfileActivity"></activity>
         <activity android:name=".activities.ForgotPasswordActivity"></activity>
         <activity android:name=".activities.EditYourProfileActivity"></activity>
         <activity android:name=".activities.AllPropertiesActivity"></activity>
