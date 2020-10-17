@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,12 +20,12 @@ import com.findinganapartment.models.PropertyPojo;
 
 import java.util.List;
 
-public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashboardAdapter.MyviewHolder> {
+public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.MyviewHolder> {
 
     Context context;
     List<PropertyPojo> a1;
 
-    public LandLordDashboardAdapter(Context context, List<PropertyPojo> categoty) {
+    public WishListAdapter(Context context, List<PropertyPojo> categoty) {
         this.context = context;
         this.a1 = categoty;
     }
@@ -36,22 +37,22 @@ public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashb
 
     @Override
     public MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_land_lorddashboard, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_wish_list_properties, parent, false);
         return new MyviewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
+
+        Glide.with(context).load(a1.get(pos).getP_pic()).into(holder.image_view);
         holder.tv_price.setText(a1.get(pos).getP_price());
-        holder.tv_time_spam.setText(" -"+a1.get(pos).getP_name());
+        holder.tv_time_spam.setText(" -  "+a1.get(pos).getP_name());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
+        holder.tv_baths.setText(a1.get(pos).getP_bath());
         holder.tv_pets.setText(a1.get(pos).getP_pets());
         holder.tv_sq_feet.setText(a1.get(pos).getP_area());
         holder.tv_apart_type.setText(a1.get(pos).getP_type());
-        holder.tv_offer.setText(a1.get(pos).getP_owner());
-        Glide.with(context).load(a1.get(pos).getP_pic()).into(holder.image_view);
-
 
         holder.image_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +64,15 @@ public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashb
                 intent.putExtra("bath",a1.get(pos).getP_bath());
                 intent.putExtra("area_sq_ft",a1.get(pos).getP_area());
                 intent.putExtra("pets",a1.get(pos).getP_pets());
+                intent.putExtra("location",a1.get(pos).getP_name());
                 context.startActivity(intent);
             }
         });
+
+
+
+
+
 
     }
 
@@ -81,6 +88,7 @@ public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashb
     public class MyviewHolder extends RecyclerView.ViewHolder {
         TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer;
         ImageView image_view;
+        CardView My_properties;
 
 
         public MyviewHolder(View itemView) {
@@ -96,6 +104,9 @@ public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashb
             tv_offer= (TextView) itemView.findViewById(R.id.tv_offer);
             image_view=(ImageView)itemView.findViewById(R.id.image_view);
 
+            My_properties=(CardView)itemView.findViewById(R.id.My_properties);
+
+
             Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Medium.ttf");
             tv_apart_type.setTypeface(custom_font);
             tv_price.setTypeface(custom_font);
@@ -104,11 +115,8 @@ public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashb
             tv_beds.setTypeface(custom_font);
             tv_pets.setTypeface(custom_font);
             tv_sq_feet.setTypeface(custom_font);
-            tv_offer.setTypeface(custom_font);
-
-
-
 
         }
     }
+
 }

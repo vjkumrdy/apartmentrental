@@ -7,7 +7,7 @@
     tools:context=".activities.LoginActivity">
 
     <ImageView
-        android:id="@+id/image_view_user"
+        android:id="@+id/register_applogo"
         android:layout_width="@dimen/_280sdp"
         android:layout_height="@dimen/_110sdp"
         android:src="@drawable/splash_screen"
@@ -15,14 +15,11 @@
         android:layout_marginTop="@dimen/_80sdp"
         />
 
-
-
-
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image_view_user"
+        android:layout_below="@+id/register_applogo"
         android:background="@drawable/input_design"
         android:padding="@dimen/_12sdp"
         android:layout_marginLeft="@dimen/_10sdp"
@@ -99,6 +96,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_6sdp"
         android:hint="Password"
+        android:inputType="textPassword"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="@dimen/_15sdp"

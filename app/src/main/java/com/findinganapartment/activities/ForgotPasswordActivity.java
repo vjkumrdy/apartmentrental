@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
 import com.findinganapartment.api.ApiService;

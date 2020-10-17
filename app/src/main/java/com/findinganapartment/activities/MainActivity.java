@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private void bottomNavigation() {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
-        bottomNavigationView.setSelectedItemId(R.id.action_item2);
+        bottomNavigationView.setSelectedItemId(R.id.action_item1);
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.home:
-                        Intent home=new Intent(getApplicationContext(), EditYourProfileActivity.class);
+                        Intent home=new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(home);
                         break;
 
@@ -105,8 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.wish_list:
-                        Intent wish_list=new Intent(getApplicationContext(), EditYourProfileActivity.class);
-                        startActivity(wish_list);
+//                        Intent wish_list=new Intent(getApplicationContext(), EditYourProfileActivity.class);
+//                        startActivity(wish_list);
+                        Toast.makeText(MainActivity.this,"Comming Soon...",Toast.LENGTH_LONG).show();
                         break;
 
 

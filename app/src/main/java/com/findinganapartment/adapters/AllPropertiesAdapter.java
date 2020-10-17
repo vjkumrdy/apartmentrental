@@ -1,6 +1,7 @@
 package com.findinganapartment.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
+import com.findinganapartment.activities.DetailsOfProperties;
 import com.findinganapartment.models.PropertyPojo;
 
 import java.util.List;
@@ -41,11 +43,10 @@ public class AllPropertiesAdapter extends RecyclerView.Adapter<AllPropertiesAdap
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
-        holder.tv_price.setText(a1.get(pos).getP_price());
+        holder.tv_price.setText(a1.get(pos).getP_price()+"$");
         holder.tv_time_spam.setText(" -  "+a1.get(pos).getP_name());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
         holder.tv_baths.setText(a1.get(pos).getP_bath());
-
         holder.tv_pets.setText(a1.get(pos).getP_pets());
         holder.tv_sq_feet.setText(a1.get(pos).getP_area());
         holder.tv_apart_type.setText(a1.get(pos).getP_type());
@@ -53,17 +54,21 @@ public class AllPropertiesAdapter extends RecyclerView.Adapter<AllPropertiesAdap
         Glide.with(context).load(a1.get(pos).getP_pic()).into(holder.image_view);
 
 
-/*
+
         holder.image_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, PropertyDetailsActivity.class);
-                intent.putExtra("image",a1.get(pos).getImage());
-                intent.putExtra("price",a1.get(pos).getPrice());
-                intent.putExtra("address",a1.get(pos).getAddress());
+                Intent intent=new Intent(context, DetailsOfProperties.class);
+                intent.putExtra("image",a1.get(pos).getP_pic());
+                intent.putExtra("price",a1.get(pos).getP_price());
+                intent.putExtra("beds",a1.get(pos).getP_beds());
+                intent.putExtra("bath",a1.get(pos).getP_bath());
+                intent.putExtra("area_sq_ft",a1.get(pos).getP_area());
+                intent.putExtra("pets",a1.get(pos).getP_pets());
+                intent.putExtra("location",a1.get(pos).getP_name());
                 context.startActivity(intent);
             }
-        });*/
+        });
 
     }
 

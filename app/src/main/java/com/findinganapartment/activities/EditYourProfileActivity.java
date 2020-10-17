@@ -8,16 +8,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
+import com.findinganapartment.api.ApiService;
+import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.EditProfilePojo;
 import com.findinganapartment.models.ResponseData;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EditYourProfileActivity extends AppCompatActivity {
     EditText et_name,et_email,et_phno,et_pwd;
@@ -27,6 +35,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
     String session;
     ResponseData a2;
     Button btn_update;
+    ImageView image_view_user;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,15 +62,15 @@ public class EditYourProfileActivity extends AppCompatActivity {
                // submitData();
             }
         });
-        //et_email.setText(session);
+        et_email.setText(session);
 
 
-      /* progressDialog = new ProgressDialog(EditYourProfileActivity.this);
+       progressDialog = new ProgressDialog(EditYourProfileActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<EditProfilePojo>> call = service.getMyProfile(session);
+        Call<List<EditProfilePojo>> call = service.getprofile(session);
 
         call.enqueue(new Callback<List<EditProfilePojo>>() {
             @Override
@@ -73,12 +82,9 @@ public class EditYourProfileActivity extends AppCompatActivity {
                 EditProfilePojo user = a1.get(0);
 
                 et_name.setText(user.getName());
-
                 et_email.setText(user.getEmail());
-
-                et_phno.setText(user.getPhono());
-
-                et_pwd.setText(user.getPwd());
+                et_phno.setText(user.getPhone());
+                et_pwd.setText(user.getPassword());
 
             }
 
@@ -87,7 +93,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(EditYourProfileActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
    }
    /* private void submitData() {
         String name = et_name.getText().toString();

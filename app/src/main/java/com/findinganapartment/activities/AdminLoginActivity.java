@@ -71,7 +71,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor et=sharedPreferences.edit();
                     et.putString("uname",et_email.getText().toString());
                     et.commit();
-                    startActivity(new Intent(AdminLoginActivity.this, AdminDashboardActivity.class));
+                    startActivity(new Intent(AdminLoginActivity.this, AdminDashBoardActivity.class));
                     finish();
                 } else {
                     Toast.makeText(AdminLoginActivity.this, response.body().message, Toast.LENGTH_LONG).show();

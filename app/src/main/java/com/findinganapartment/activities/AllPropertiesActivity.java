@@ -2,6 +2,7 @@ package com.findinganapartment.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,9 +34,9 @@ public class AllPropertiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_screen);
 
-        getSupportActionBar().setTitle(" Properties");
-
-
+        getSupportActionBar().setTitle("All Properties");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         property_recyclerView = (RecyclerView)findViewById(R.id.property_recyclerView);
         a1 = new ArrayList<>();
 
@@ -51,7 +52,7 @@ public class AllPropertiesActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PropertyPojo>> call = service.getproperties();
+        Call<List<PropertyPojo>> call = service.userviewpropertylist();
         call.enqueue(new Callback<List<PropertyPojo>>() {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {
@@ -71,5 +72,15 @@ public class AllPropertiesActivity extends AppCompatActivity {
                 Toast.makeText(AllPropertiesActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

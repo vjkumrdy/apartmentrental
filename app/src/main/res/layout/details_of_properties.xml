@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="sans-serif-black"
-                        android:text="3"
+                        android:text="Beds"
                         android:textColor="#111" />
 
                     <TextView
@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="sans-serif-black"
-                        android:text="2.5"
+                        android:text="Bath"
                         android:textColor="#111" />
 
 
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="sans-serif-black"
-                        android:text="1,123"
+                        android:text="Sq ft"
                         android:textColor="#111" />
 
 
@@ -167,6 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Pets"
+                        android:textStyle="bold"
                         android:textColor="#111"
                         android:visibility="visible" />
 

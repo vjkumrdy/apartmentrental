@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/My_properties"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_2sdp"
@@ -141,10 +142,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="#111"
                     android:fontFamily="sans-serif-black"
-                    android:text="1,123" />
-
+                    android:text="1,123"
+                    android:textColor="#111" />
 
 
                 <TextView
@@ -168,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_allow"
                     android:visibility="visible"
@@ -184,19 +185,10 @@
                     android:fontFamily="sans-serif-black"
                     android:text="Pets" />
 
+
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_offer"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:textSize="@dimen/_12sdp"
-            android:visibility="gone"
-            android:textColor="#111"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="sans-serif-black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

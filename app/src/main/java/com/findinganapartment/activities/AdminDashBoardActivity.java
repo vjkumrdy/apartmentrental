@@ -1,6 +1,8 @@
 package com.findinganapartment.activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -29,34 +31,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AdminDashboardActivity extends AppCompatActivity {
+public class AdminDashBoardActivity extends AppCompatActivity {
     RecyclerView property_recyclerView;
     List<PropertyPojo> a1;
-    AdminDashboardAdapter adminDashboardAdapter;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private DrawerLayout dl;
     ProgressDialog progressDialog;
+    AdminDashboardAdapter adminDashboardAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
-
         getSupportActionBar().setTitle("Admin Dashboard");
         navigationView();
 
         property_recyclerView = (RecyclerView)findViewById(R.id.property_recyclerView);
         a1 = new ArrayList<>();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AdminDashboardActivity.this, LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AdminDashBoardActivity.this, LinearLayoutManager.VERTICAL,false);
         property_recyclerView.setLayoutManager(linearLayoutManager);
         serverData();
-
-
     }
     private void navigationView(){
         dl = (DrawerLayout)findViewById(R.id.activity_main);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,29 +66,16 @@ public class AdminDashboardActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id)
                 {
-                    case R.id.home:
-                        Intent home=new Intent(getApplicationContext(), AddPropertyActivity.class);
-                        startActivity(home);
-                        break;
 
                     case R.id.myprofile:
                         Intent myprofile=new Intent(getApplicationContext(), AdminEditProfileActivity.class);
                         startActivity(myprofile);
                         break;
 
-                    case R.id.add_property:
-                        Intent add_property=new Intent(getApplicationContext(), AddPropertyActivity.class);
-                        startActivity(add_property);
-                        break;
-
-                    case R.id.My_properties:
-                        Intent my_property=new Intent(getApplicationContext(), AddPropertyActivity.class);
-                        startActivity(my_property);
-                        break;
-
                     case R.id.logout:
                         Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
 
                     default:
@@ -105,7 +91,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
         if (dl.isDrawerOpen(GravityCompat.START)) {
             dl.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+            alertDiolouge();
         }
     }
 
@@ -119,9 +106,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void serverData(){
-        progressDialog = new ProgressDialog(AdminDashboardActivity.this);
+    public void serverData() {
+        progressDialog = new ProgressDialog(AdminDashBoardActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
@@ -131,11 +117,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {
                 progressDialog.dismiss();
-                if(response.body()==null){
-                    Toast.makeText(AdminDashboardActivity.this,"No data found", Toast.LENGTH_SHORT).show();
-                }else {
+                if (response.body() == null) {
+                    Toast.makeText(AdminDashBoardActivity.this, "No data found", Toast.LENGTH_SHORT).show();
+                } else {
                     a1 = response.body();
-                    adminDashboardAdapter=new AdminDashboardAdapter(AdminDashboardActivity.this,a1);  //attach adapter class with therecyclerview
+                    adminDashboardAdapter = new AdminDashboardAdapter(AdminDashBoardActivity.this, a1);  //attach adapter class with therecyclerview
                     property_recyclerView.setAdapter(adminDashboardAdapter);
                 }
             }
@@ -143,10 +129,37 @@ public class AdminDashboardActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<PropertyPojo>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(AdminDashboardActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminDashBoardActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
+    public void alertDiolouge(){
 
-//hi
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(AdminDashBoardActivity.this);
+        builder1.setTitle("Alert !!!");
+        builder1.setMessage("Do you want to close the Application.");  //message we want to show the end user
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel(); //cancle the alert dialog box
+                        finish();//finish the process
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
 }
+

@@ -19,7 +19,9 @@ import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.PropertyPojo;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,18 +45,15 @@ public class SearchPropertiesActivity extends AppCompatActivity {
 
 
         property_recyclerView=(RecyclerView)findViewById(R.id.property_recyclerView);
-        gettextfilter();
-
-
-
-
+        a1 = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchPropertiesActivity.this, LinearLayoutManager.VERTICAL,false);
         property_recyclerView.setLayoutManager(linearLayoutManager);
         serverData();
+        textchanger();
     }
     public void serverData(){
         progressDialog = new ProgressDialog(SearchPropertiesActivity.this);
-        progressDialog.setMessage("Loading plz wait....");
+        progressDialog.setMessage("Loading....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
@@ -67,7 +66,7 @@ public class SearchPropertiesActivity extends AppCompatActivity {
                     Toast.makeText(SearchPropertiesActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    searchPropertiesAdapter=new SearchPropertiesAdapter(a1);  //attach adapter class with therecyclerview
+                    searchPropertiesAdapter=new SearchPropertiesAdapter(SearchPropertiesActivity.this,a1);  //attach adapter class with therecyclerview
                     property_recyclerView.setAdapter(searchPropertiesAdapter);
                 }
             }
@@ -79,24 +78,26 @@ public class SearchPropertiesActivity extends AppCompatActivity {
             }
         });
     }
-    public void gettextfilter(){
-        searchView = (EditText) findViewById(R.id.et_search);
-        searchView.addTextChangedListener(new TextWatcher() {
+
+    public void textchanger(){
+
+        et_search = (EditText)findViewById(R.id.et_search);
+        et_search.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+                String text = et_search.getText().toString().toLowerCase(Locale.getDefault());
+                searchPropertiesAdapter.filter(text);
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                // TODO Auto-generated method stub
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-                Toast.makeText(SearchPropertiesActivity.this, ""+editable, Toast.LENGTH_SHORT).show();
-                //property_recyclerView.getFilter().filter(editable);
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                // TODO Auto-generated method stub
             }
         });
     }
