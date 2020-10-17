@@ -1,6 +1,8 @@
 package com.findinganapartment.activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -68,7 +70,7 @@ public class LandLordDashboardActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.home:
-                        Intent home=new Intent(getApplicationContext(), AddPropertyActivity.class);
+                        Intent home=new Intent(getApplicationContext(), LandLordDashboardActivity.class);
                         startActivity(home);
                         break;
 
@@ -83,13 +85,14 @@ public class LandLordDashboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.My_properties:
-                        Intent my_property=new Intent(getApplicationContext(), AddPropertyActivity.class);
+                        Intent my_property=new Intent(getApplicationContext(), MyPropertiesActivity.class);
                         startActivity(my_property);
                         break;
 
                     case R.id.logout:
                         Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
 
                     default:
@@ -105,7 +108,8 @@ public class LandLordDashboardActivity extends AppCompatActivity {
         if (dl.isDrawerOpen(GravityCompat.START)) {
             dl.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+           // super.onBackPressed();
+            alertDiolouge();
         }
     }
 
@@ -126,7 +130,7 @@ public class LandLordDashboardActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PropertyPojo>> call = service.getproperties();
+        Call<List<PropertyPojo>> call = service.userviewpropertylist();
         call.enqueue(new Callback<List<PropertyPojo>>() {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {
@@ -147,6 +151,31 @@ public class LandLordDashboardActivity extends AppCompatActivity {
             }
         });
     }
+    public void alertDiolouge(){
 
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(LandLordDashboardActivity.this);
+        builder1.setTitle("Alert !!!");
+        builder1.setMessage("Do you want to close the Application.");  //message we want to show the end user
+        builder1.setCancelable(true);
 
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel(); //cancle the alert dialog box
+                        finish();//finish the process
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
 }

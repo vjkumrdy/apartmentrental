@@ -13,7 +13,7 @@ import com.findinganapartment.R;
 
 public class DetailsOfProperties extends AppCompatActivity {
     ImageView image_view;
-    TextView tv_price,text_beds,text_baths,text_sq_feet,tv_pets,tv_description;
+    TextView tv_price,text_beds,text_baths,text_sq_feet,tv_pets,tv_description,tv_time_spam;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +29,11 @@ public class DetailsOfProperties extends AppCompatActivity {
         text_sq_feet=(TextView)findViewById(R.id.text_sq_feet);
         tv_pets=(TextView)findViewById(R.id.tv_pets);
         tv_description=(TextView)findViewById(R.id.tv_description);
-
+        tv_time_spam=(TextView)findViewById(R.id.tv_time_spam);
         image_view=(ImageView)findViewById(R.id.image_view);
         Glide.with(this).load(getIntent().getStringExtra("image")).into(image_view);
-        tv_price.setText(getIntent().getStringExtra("price"));
-
+        tv_price.setText(getIntent().getStringExtra("price")+"$");
+        tv_time_spam.setText(getIntent().getStringExtra("location"));
         text_beds.setText(getIntent().getStringExtra("beds"));
         text_baths.setText(getIntent().getStringExtra("bath"));
         text_sq_feet.setText(getIntent().getStringExtra("area_sq_ft"));

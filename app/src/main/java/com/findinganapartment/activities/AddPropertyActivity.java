@@ -49,7 +49,7 @@ public class AddPropertyActivity extends AppCompatActivity implements EasyPermis
     ProgressDialog pd;
     private static final String TAG = AddPropertyActivity.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 200;
-    private static final int READ_REQUEST_CODE = 400;
+    private static final int READ_REQUEST_CODE = 300;
     private static final String SERVER_PATH = "http://findingaapartment.com/";
     private Uri uri;
     String session;

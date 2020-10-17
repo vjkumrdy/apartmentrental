@@ -84,6 +84,9 @@ public class PropertyPojo {
         this.p_type = p_type;
     }
 
+
+
+
     @SerializedName("pid")
     private String pid;
 
@@ -114,16 +117,26 @@ public class PropertyPojo {
     @SerializedName("p_type")
     private String p_type;
 
-    public String getStatus() {
-        return status;
+    @SerializedName("a_status")
+    private String a_status;
+
+    public String getLocation() {
+        return location;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    @SerializedName("status")
-    private String status;
+    @SerializedName("location")
+    private String location;
 
 
+    public String getA_status() {
+        return a_status;
+    }
+
+    public void setA_status(String a_status) {
+        this.a_status = a_status;
+    }
 }

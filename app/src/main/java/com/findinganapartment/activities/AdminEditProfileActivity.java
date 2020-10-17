@@ -30,7 +30,7 @@ public class AdminEditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_profile);
+        setContentView(R.layout.admin_edit_profile);
 
         getSupportActionBar().setTitle("Edit Profile");
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -56,7 +56,7 @@ public class AdminEditProfileActivity extends AppCompatActivity {
         //et_email.setText(session);
 
 
-      /* progressDialog = new ProgressDialog(EditYourProfileActivity.this);
+       /*progressDialog = new ProgressDialog(EditYourProfileActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
@@ -76,9 +76,9 @@ public class AdminEditProfileActivity extends AppCompatActivity {
 
                 et_email.setText(user.getEmail());
 
-                et_phno.setText(user.getPhono());
+                et_phno.setText(user.getPhone());
 
-                et_pwd.setText(user.getPwd());
+                et_pwd.setText(user.getPassword());
 
             }
 
