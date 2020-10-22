@@ -1,19 +1,23 @@
 package com.findinganapartment.activities;
 
 import android.app.ProgressDialog;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
+import com.findinganapartment.adapters.AllPropertiesAdapter;
 import com.findinganapartment.adapters.SearchPropertiesAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;

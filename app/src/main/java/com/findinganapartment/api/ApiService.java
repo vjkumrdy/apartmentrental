@@ -1,6 +1,8 @@
 package com.findinganapartment.api;
 
 import com.findinganapartment.models.EditProfilePojo;
+import com.findinganapartment.models.GetPhotosPojo;
+import com.findinganapartment.models.MyRequestPojo;
 import com.findinganapartment.models.PropertyPojo;
 import com.findinganapartment.models.ResponseData;
 
@@ -26,6 +28,7 @@ public interface ApiService {
 
     );
 
+
     @Multipart
     @POST("rental/addproperty.php?")
     Call<ResponseData> add_property(
@@ -34,8 +37,26 @@ public interface ApiService {
 
     );
 
-    @GET("/rental/userviewpropertylist.php")
-    Call<List<PropertyPojo>> userviewpropertylist();
+
+    @Multipart
+    @POST("rental/addphotos.php?")
+    Call<ResponseData> addphotos(
+            @Part MultipartBody.Part file,
+            @PartMap Map<String, String> partMap
+
+    );
+
+    @GET("rental/addfavlist.php?")
+    Call<ResponseData> addfavlist(
+            @Query("p_id") String p_id,
+            @Query("email") String email
+    );
+
+
+
+    @GET("/rental/getphotos.php?")
+    Call<List<GetPhotosPojo>> getphotos
+            (@Query("pid") String pid );
 
     /*@GET("rental/user_registration.php?")
     Call<ResponseData> userRegistration(
@@ -51,6 +72,23 @@ public interface ApiService {
             @Query("pwd") String pwd,
             @Query("role") String role
     );
+
+    @GET("/rental/booknow.php?")
+    Call<ResponseData> booknow(
+            @Query("pid") String pid,
+            @Query("bname") String bname,
+            @Query("bmsg") String bmsg
+    );
+
+
+    @GET("/rental/reply.php?")
+    Call<ResponseData> reply(
+            @Query("bid") String bid,
+            @Query("lname") String lname,
+            @Query("lmsg") String lmsg
+    );
+
+
 
 
     @GET("/rental/user_login.php?")
@@ -82,20 +120,43 @@ public interface ApiService {
     @GET("/rental/getproperties.php")
     Call<List<PropertyPojo>> getproperties();
 
+    @GET("/rental/userviewpropertylist.php")
+    Call<List<PropertyPojo>> userviewpropertylist();
+
+    @GET("/rental/getmyproperties.php?")
+    Call<List<PropertyPojo>> getmyproperties(@Query("email") String email);
+
+    @GET("/rental/myrequests.php?")
+    Call<List<MyRequestPojo>> myrequests(@Query("email") String email);
+
+
+    @GET("/rental/tenantrequests.php?")
+    Call<List<MyRequestPojo>> tenantrequests(@Query("email") String email);
+
+
+
+
     @GET("/rental/updatepropertystatus.php")
     Call<ResponseData> updatepropertystatus(
             @Query("status") String status,
-            @Query("pid") String pid
+            @Query("id") String id
+    );
+
+
+    @GET("/rental/updatepropertystatus.php")
+    Call<ResponseData> updatestatus(
+            @Query("id") String id,
+            @Query("status") String status
 
     );
+
     @GET("/rental/deleteproperty.php?")
     Call<ResponseData> deleteproperty(
             @Query("id") String id
 
     );
 
-    @GET("/rental/getmyproperties.php?")
-    Call<List<PropertyPojo>> getmyproperties(@Query("email") String email);
-
+    @GET("/rental/getfavlist.php")
+    Call<List<PropertyPojo>> getfavlist( @Query("email") String email);
 
 }

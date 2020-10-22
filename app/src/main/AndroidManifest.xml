@@ -21,23 +21,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity"></activity>
-        <activity android:name=".activities.RegistrationActivity"></activity>
-        <activity android:name=".activities.LandLordDashboardActivity"></activity>
-        <activity android:name=".activities.AdminDashboardActivity"></activity>
-        <activity android:name=".activities.AdminLoginActivity"></activity>
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegistrationActivity" />
+        <activity android:name=".activities.LandLordDashboardActivity" />
+        <activity android:name=".activities.AdminDashBoardActivity" />
+        <activity android:name=".activities.AdminLoginActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.AddPropertyActivity" />
+        <activity android:name=".activities.LandLordEditProfileActivity" />
+        <activity android:name=".activities.ForgotPasswordActivity" />
+        <activity android:name=".activities.EditYourProfileActivity" />
+        <activity android:name=".activities.AllPropertiesActivity" />
+        <activity android:name=".activities.AdminEditProfileActivity" />
+        <activity android:name=".activities.MyPropertiesActivity" />
+        <activity android:name=".activities.EditMyPropertiesActivity" />
+        <activity android:name=".activities.SearchPropertiesActivity" />
+        <activity android:name=".activities.DetailsOfProperties" />
 
-        <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.AddPropertyActivity"></activity>
-        <activity android:name=".activities.LandLordEditProfileActivity"></activity>
-        <activity android:name=".activities.ForgotPasswordActivity"></activity>
-        <activity android:name=".activities.EditYourProfileActivity"></activity>
-        <activity android:name=".activities.AllPropertiesActivity"></activity>
-        <activity android:name=".activities.AdminEditProfileActivity"></activity>
-
-        <activity android:name=".activities.MyPropertiesActivity"></activity>
-        <activity android:name=".activities.EditMyPropertiesActivity"></activity>
-        <activity android:name=".activities.SearchPropertiesActivity"></activity>
 
     </application>
 
