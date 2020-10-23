@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
 
+import com.findinganapartment.activities.ReplyActivity;
 import com.findinganapartment.models.MyRequestPojo;
 
 import java.util.List;
@@ -65,10 +66,10 @@ public class MyRequestAdapter extends BaseAdapter {
         btn_reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  Intent intent=new Intent(cnt, ReplyActivity.class);
-                //intent.putExtra("bid",ar.get(pos).getBid());
-               // intent.putExtra("uname",session);
-                //cnt.startActivity(intent);
+              Intent intent=new Intent(cnt, ReplyActivity.class);
+                intent.putExtra("bid",ar.get(pos).getBid());
+                intent.putExtra("uname",session);
+                cnt.startActivity(intent);
             }
         });
 
