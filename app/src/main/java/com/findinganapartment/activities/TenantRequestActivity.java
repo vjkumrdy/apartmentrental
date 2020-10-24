@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
 
+import com.findinganapartment.adapters.TenantRequestAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.MyRequestPojo;
@@ -29,7 +30,7 @@ public class TenantRequestActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     List<MyRequestPojo> a1;
     SharedPreferences sharedPreferences;
-    //TenantRequestAdapter myRequestAdapter;
+    TenantRequestAdapter myRequestAdapter;
     String session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,8 @@ public class TenantRequestActivity extends AppCompatActivity {
                     Toast.makeText(TenantRequestActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    //myRequestAdapter=new TenantRequestAdapter(a1, TenantRequestActivity.this);  //attach adapter class with therecyclerview
-                    //list_view.setAdapter(myRequestAdapter);
+                    myRequestAdapter=new TenantRequestAdapter(a1, TenantRequestActivity.this);  //attach adapter class with therecyclerview
+                    list_view.setAdapter(myRequestAdapter);
                 }
             }
 
