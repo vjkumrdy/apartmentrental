@@ -17,7 +17,7 @@
         android:background="@drawable/login_edittext"
         android:drawableLeft="@drawable/ic_search"
         android:drawablePadding="@dimen/_3sdp"
-        android:hint="Search" />
+        android:hint="Search By Price /Location" />
 
 
 

@@ -219,6 +219,19 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btn_book_now"
+            android:text="Book Now"
+            android:textAllCaps="false"
+            android:layout_below="@+id/et_pwd"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:background="@drawable/buttons"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_40sdp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
