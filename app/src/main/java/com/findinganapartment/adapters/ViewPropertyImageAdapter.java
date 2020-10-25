@@ -61,7 +61,7 @@ public class ViewPropertyImageAdapter extends RecyclerView.Adapter<ViewPropertyI
         public MyviewHolder(View itemView) {
             super(itemView);
 
-            im_view=(ImageView)itemView.findViewById(R.id.im_view);
+            im_view=(ImageView)itemView.findViewById(R.id.image_view);
 
 
 
