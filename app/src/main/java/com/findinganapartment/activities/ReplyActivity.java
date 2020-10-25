@@ -29,7 +29,7 @@ public class ReplyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply);
-        getSupportActionBar().setTitle("Reply Now");
+        getSupportActionBar().setTitle("Reply Now !!");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
