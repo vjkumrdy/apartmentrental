@@ -43,8 +43,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddPropertyActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    EditText et_property_name,et_property_area,et_property_price;
-    Spinner spin_property_type,spin_property_beds,spin_bath_rooms,spin_pets,spin_location;
+    EditText et_property_name,et_property_area,et_property_price,et_property_desc;
+    Spinner spin_property_type,spin_property_beds,spin_bath_rooms,spin_pets,spin_location,spin_per;
     Button property_image,btn_submit;
     ProgressDialog pd;
     private static final String TAG = AddPropertyActivity.class.getSimpleName();
@@ -70,11 +70,14 @@ public class AddPropertyActivity extends AppCompatActivity implements EasyPermis
         et_property_area=(EditText)findViewById(R.id.et_property_area);
         et_property_price=(EditText)findViewById(R.id.et_property_price);
 
+        et_property_desc=(EditText)findViewById(R.id.et_property_desc);
+
         spin_property_type=(Spinner)findViewById(R.id.spin_property_type);
         spin_property_beds=(Spinner)findViewById(R.id.spin_property_beds);
         spin_bath_rooms=(Spinner)findViewById(R.id.spin_bath_rooms);
         spin_pets=(Spinner)findViewById(R.id.spin_pets);
         spin_location=(Spinner)findViewById(R.id.spin_location);
+        spin_per=(Spinner)findViewById(R.id.spin_per);
 
         property_image=(Button)findViewById(R.id.property_image);
         btn_submit=(Button)findViewById(R.id.btn_submit);
@@ -149,6 +152,8 @@ public class AddPropertyActivity extends AppCompatActivity implements EasyPermis
         map.put("pbeds",spin_property_beds.getSelectedItem().toString());
         map.put("pbath",spin_bath_rooms.getSelectedItem().toString());
         map.put("parea",et_property_area.getText().toString());
+        map.put("des",et_property_desc.getText().toString());
+        map.put("per",spin_per.getSelectedItem().toString());
         map.put("ppets",spin_pets.getSelectedItem().toString());
         map.put("pprice",et_property_price.getText().toString());
         map.put("location",spin_location.getSelectedItem().toString());

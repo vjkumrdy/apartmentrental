@@ -47,7 +47,7 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
-        holder.tv_price.setText(a1.get(pos).getP_price());
+        holder.tv_price.setText(a1.get(pos).getP_price()+"$" +"/"+a1.get(pos).getPer());
         holder.tv_time_spam.setText(" -  " + a1.get(pos).getP_name());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
         holder.tv_baths.setText(a1.get(pos).getP_bath());
@@ -55,6 +55,7 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
         holder.tv_sq_feet.setText(a1.get(pos).getP_area());
         holder.tv_apart_type.setText(a1.get(pos).getP_type());
         holder.tv_offer.setText(a1.get(pos).getP_owner());
+        holder.tv_location.setText("Location :"+a1.get(pos).getLocation());
         Glide.with(context).load(a1.get(pos).getP_pic()).into(holder.image_view);
 
 
@@ -68,6 +69,7 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
                 intent.putExtra("bath", a1.get(pos).getP_bath());
                 intent.putExtra("area_sq_ft", a1.get(pos).getP_area());
                 intent.putExtra("pets", a1.get(pos).getP_pets());
+                intent.putExtra("des", a1.get(pos).getDescription());
                 context.startActivity(intent);
             }
         });
@@ -84,7 +86,7 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView tv_apart_type, tv_price, tv_time_spam, tv_beds, tv_baths, tv_sq_feet, tv_pets, tv_offer;
+        TextView tv_apart_type, tv_price, tv_time_spam, tv_beds, tv_baths, tv_sq_feet, tv_pets, tv_offer,tv_location;
         ImageView image_view;
 
 
@@ -99,6 +101,7 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
             tv_sq_feet = (TextView) itemView.findViewById(R.id.tv_sq_feet);
             tv_pets = (TextView) itemView.findViewById(R.id.tv_pets);
             tv_offer = (TextView) itemView.findViewById(R.id.tv_offer);
+            tv_location = (TextView) itemView.findViewById(R.id.tv_location);
             image_view = (ImageView) itemView.findViewById(R.id.image_view);
 
             Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Medium.ttf");
@@ -124,6 +127,81 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
             for (PropertyPojo wp : propertyData)
             {
                 if (wp.getLocation().toLowerCase(Locale.getDefault()).contains(charText) ||wp.getP_price().toLowerCase(Locale.getDefault()).contains(charText) ||wp.getP_beds().toLowerCase(Locale.getDefault()).contains(charText))
+                {
+                    a1.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void price_filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        a1.clear();
+        if (charText.length() == 0) {
+            a1.addAll(propertyData);
+        }
+        else
+        {
+            for (PropertyPojo wp : propertyData)
+            {
+                if (wp.getP_price().toLowerCase(Locale.getDefault()).contains(charText))
+                {
+                    a1.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void property_type_filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        a1.clear();
+        if (charText.length() == 0) {
+            a1.addAll(propertyData);
+        }
+        else
+        {
+            for (PropertyPojo wp : propertyData)
+            {
+                if (wp.getP_type().toLowerCase(Locale.getDefault()).contains(charText))
+                {
+                    a1.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+    public void beds_filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        a1.clear();
+        if (charText.length() == 0) {
+            a1.addAll(propertyData);
+        }
+        else
+        {
+            for (PropertyPojo wp : propertyData)
+            {
+                if (wp.getP_beds().toLowerCase(Locale.getDefault()).contains(charText))
+                {
+                    a1.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void location_filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        a1.clear();
+        if (charText.length() == 0) {
+            a1.addAll(propertyData);
+        }
+        else
+        {
+            for (PropertyPojo wp : propertyData)
+            {
+                if (wp.getLocation().toLowerCase(Locale.getDefault()).contains(charText))
                 {
                     a1.add(wp);
                 }

@@ -12,6 +12,7 @@
         android:title="My Profile"/>
 
     <item android:id="@+id/property_list"
+        android:visible="false"
         android:icon="@drawable/ic_baseline_business_24"
         android:title="Property List"/>
 

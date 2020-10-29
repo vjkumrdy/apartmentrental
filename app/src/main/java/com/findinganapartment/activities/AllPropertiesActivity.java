@@ -1,6 +1,8 @@
 package com.findinganapartment.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
+import com.findinganapartment.Utils;
 import com.findinganapartment.adapters.AllPropertiesAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
@@ -28,11 +31,16 @@ public class AllPropertiesActivity extends AppCompatActivity {
     List<PropertyPojo> a1;
     AllPropertiesAdapter allPropertiesAdapter;
     ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
+    String session;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_screen);
+
+        sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+        session = sharedPreferences.getString("uname", "def-val");
 
         getSupportActionBar().setTitle("All Properties");
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -61,7 +69,7 @@ public class AllPropertiesActivity extends AppCompatActivity {
                     Toast.makeText(AllPropertiesActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    allPropertiesAdapter=new AllPropertiesAdapter(AllPropertiesActivity.this,a1);  //attach adapter class with therecyclerview
+                    allPropertiesAdapter=new AllPropertiesAdapter(AllPropertiesActivity.this,a1,session);  //attach adapter class with therecyclerview
                     property_recyclerView.setAdapter(allPropertiesAdapter);
                 }
             }

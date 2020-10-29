@@ -1,26 +1,32 @@
 package com.findinganapartment.activities;
 
 import android.app.ProgressDialog;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.findinganapartment.R;
-import com.findinganapartment.adapters.AllPropertiesAdapter;
 import com.findinganapartment.adapters.SearchPropertiesAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
+
+import com.findinganapartment.models.PricePojo;
 import com.findinganapartment.models.PropertyPojo;
 
 import java.util.ArrayList;
@@ -38,6 +44,9 @@ public class SearchPropertiesActivity extends AppCompatActivity {
     SearchPropertiesAdapter searchPropertiesAdapter;
     List<PropertyPojo> a1;
     EditText searchView;
+    Spinner spin_price,spin_ptype;
+    String[] propertytype;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,49 @@ public class SearchPropertiesActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar)findViewById(R.id.rangeSeekbar1);
+        rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                Toast.makeText(SearchPropertiesActivity.this, ""+maxValue, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SearchPropertiesActivity.this, ""+minValue, Toast.LENGTH_SHORT).show();
+                //searchPropertiesAdapter.price_filter(""+maxValue);
+
+            }
+        });
+
+// set final value listener
+        rangeSeekbar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueListener() {
+            @Override
+            public void finalValue(Number minValue, Number maxValue) {
+                Log.d("CRS=>", String.valueOf(minValue) + " : " + String.valueOf(maxValue));
+            }
+        });
+
+
+
+       spin_price=(Spinner)findViewById(R.id.spin_price);
+        spin_ptype=(Spinner)findViewById(R.id.spin_ptype);
+        spin_ptype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i > 0){
+
+                   searchPropertiesAdapter.property_type_filter(spin_ptype.getSelectedItem().toString());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        apartmentprice();
+
+
+
+
+
 
         property_recyclerView=(RecyclerView)findViewById(R.id.property_recyclerView);
         a1 = new ArrayList<>();
@@ -54,6 +106,8 @@ public class SearchPropertiesActivity extends AppCompatActivity {
         property_recyclerView.setLayoutManager(linearLayoutManager);
         serverData();
         textchanger();
+
+
     }
     public void serverData(){
         progressDialog = new ProgressDialog(SearchPropertiesActivity.this);
@@ -102,6 +156,64 @@ public class SearchPropertiesActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
                 // TODO Auto-generated method stub
+            }
+        });
+    }
+
+   private void apartmentprice() {
+        ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
+       Call<List<PricePojo>> call = apiService.getprices();
+        call.enqueue(new Callback<List<PricePojo>>() {
+            @Override
+            public void onResponse(Call<List<PricePojo>> call, Response<List<PricePojo>> response) {
+                if (response.isSuccessful()) {
+                    final List<PricePojo> p_price=response.body();
+                    if(p_price!=null) {
+                        if(p_price.size()>0) {
+
+                            ArrayList<String> price = new ArrayList<String>();
+                            price.add("Select Price");
+                            for (int i = 0; i < p_price.size(); i++) {
+                                price.add(p_price.get(i).getP_price());
+                            }
+                            ArrayAdapter<String> adp = new ArrayAdapter<String>(SearchPropertiesActivity.this, android.R.layout.simple_spinner_dropdown_item, price);
+                            spin_price.setAdapter(adp);
+                            spin_price.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    if(i > 0){
+                                        searchPropertiesAdapter.price_filter(spin_price.getSelectedItem().toString());
+                                    }
+
+
+                                  /*  String apartmentprice = spin_price.getSelectedItem().toString().toLowerCase(Locale.getDefault());
+                                    if(spin_price.getSelectedItem().equals("Select Price")){
+                                        serverData();
+                                    }
+                                    else {
+
+
+                                    }*/
+
+
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {
+                                    //serverData();
+
+                                }
+                            });
+
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PricePojo>> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
             }
         });
     }

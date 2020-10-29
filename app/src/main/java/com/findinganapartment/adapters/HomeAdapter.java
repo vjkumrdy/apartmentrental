@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
-import com.findinganapartment.activities.DetailsOfProperties;
+import com.findinganapartment.activities.MainActivity;
+import com.findinganapartment.activities.ViewPropertyImagesActivity;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.PropertyPojo;
@@ -32,7 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
 
     Context context;
     List<PropertyPojo> a1;
-    String session;
+    String session,s;
 
     public HomeAdapter(Context context, List<PropertyPojo> categoty, String session) {
         this.context = context;
@@ -55,8 +57,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
-        holder.tv_price.setText(a1.get(pos).getP_price());
+        holder.tv_price.setText(a1.get(pos).getP_price()+"$" +"/"+a1.get(pos).getPer());
         holder.tv_time_spam.setText(" -"+a1.get(pos).getP_name());
+        holder.tv_location.setText("Location :"+a1.get(pos).getLocation());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
         holder.tv_pets.setText(a1.get(pos).getP_pets());
         holder.tv_baths.setText(a1.get(pos).getP_bath());
@@ -68,25 +71,54 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
         holder.img_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(context, "Added"+session, Toast.LENGTH_SHORT).show();
-                serverData(a1.get(pos).getPid(),session);
+
+                if(a1.get(pos).getStatus().equals("Like")) {
+                    s="Unlike";
+                    serverData(a1.get(pos).getPid(), session,s);
+                }
+                else
+                {
+                    s="Like";
+                    serverData(a1.get(pos).getPid(), session,s);
+
+                }
             }
         });
+
+        if(a1.get(pos).getStatus().equals("Like") && a1.get(pos).getEmail().equals(session))
+        {
+
+            holder.tv_offer.setText(a1.get(pos).getP_owner());
+            holder.img_fav.setImageResource(R.drawable.ic_fav);
+
+        }
+       // Toast.makeText(context, ""+a1.get(pos).getStatus(), Toast.LENGTH_SHORT).show();
+
+
 
 
         holder.image_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, DetailsOfProperties.class);
+                Intent intent=new Intent(context, ViewPropertyImagesActivity.class);
                 intent.putExtra("image",a1.get(pos).getP_pic());
+                intent.putExtra("pid",a1.get(pos).getPid());
                 intent.putExtra("price",a1.get(pos).getP_price());
+                intent.putExtra("property_typE",a1.get(pos).getP_type());
+                intent.putExtra("description",a1.get(pos).getDescription());
+                intent.putExtra("pname",a1.get(pos).getP_name());
                 intent.putExtra("beds",a1.get(pos).getP_beds());
                 intent.putExtra("bath",a1.get(pos).getP_bath());
                 intent.putExtra("area_sq_ft",a1.get(pos).getP_area());
                 intent.putExtra("pets",a1.get(pos).getP_pets());
+                intent.putExtra("location",a1.get(pos).getLocation());
+                intent.putExtra("type",a1.get(pos).getType());
+                intent.putExtra("username",session);
                 context.startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -99,11 +131,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer;
+        TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer,tv_location;
         ImageView image_view,img_fav;
+        Button btn_book_now;
 
         public MyviewHolder(View itemView) {
             super(itemView);
+
+            btn_book_now=(Button)itemView.findViewById(R.id.btn_book_now);
 
             tv_price= (TextView) itemView.findViewById(R.id.tv_price);
             tv_apart_type= (TextView) itemView.findViewById(R.id.tv_apart_type);
@@ -113,6 +148,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
             tv_sq_feet= (TextView) itemView.findViewById(R.id.tv_sq_feet);
             tv_pets= (TextView) itemView.findViewById(R.id.tv_pets);
             tv_offer= (TextView) itemView.findViewById(R.id.tv_offer);
+            tv_location= (TextView) itemView.findViewById(R.id.tv_location);
             image_view=(ImageView)itemView.findViewById(R.id.image_view);
             img_fav=(ImageView)itemView.findViewById(R.id.img_fav);
 
@@ -129,12 +165,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
         }
     }
     ProgressDialog progressDialog;
-    public void serverData(String id,String session){
+    public void serverData(String id,String session,final String s){
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<ResponseData> call = service.addfavlist(id,session);
+        Call<ResponseData> call = service.addfavlist(id,session,s);
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
@@ -143,7 +179,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
                     Toast.makeText(context,"Server issue",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    //context.startActivity(new Intent(context, AllPlayersActivity.class));
+                    context.startActivity(new Intent(context, MainActivity.class));
                     Toast.makeText(context,response.body().message,Toast.LENGTH_SHORT).show();
                     //((Activity)context).finish();
                 }

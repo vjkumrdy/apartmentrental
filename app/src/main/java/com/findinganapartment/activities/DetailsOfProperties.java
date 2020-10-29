@@ -2,6 +2,7 @@ package com.findinganapartment.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,10 +15,11 @@ import com.findinganapartment.R;
 public class DetailsOfProperties extends AppCompatActivity {
     ImageView image_view;
     TextView tv_price,text_beds,text_baths,text_sq_feet,tv_pets,tv_description,tv_time_spam;
+    Button btn_book_now;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details_of_properties);
+        setContentView(R.layout.property_details);
 
         getSupportActionBar().setTitle("Property Details");
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -38,6 +40,22 @@ public class DetailsOfProperties extends AppCompatActivity {
         text_baths.setText(getIntent().getStringExtra("bath"));
         text_sq_feet.setText(getIntent().getStringExtra("area_sq_ft"));
         tv_pets.setText(getIntent().getStringExtra("pets"));
+
+        tv_description.setText(getIntent().getStringExtra("des"));
+
+      /*  btn_book_now=(Button)findViewById(R.id.btn_book_now);
+        btn_book_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Details.this, BookingActivity.class);
+                intent.putExtra("pid",getIntent().getStringExtra("pid"));
+                intent.putExtra("uname",getIntent().getStringExtra("username"));
+                startActivity(intent);
+
+            }
+        });*/
+
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

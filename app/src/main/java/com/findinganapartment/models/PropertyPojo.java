@@ -85,7 +85,16 @@ public class PropertyPojo {
     }
 
 
+    @SerializedName("status")
+    private String status;
 
+    @SerializedName("email")
+    private String email;
+
+
+
+    @SerializedName("per")
+    private String per;
 
     @SerializedName("pid")
     private String pid;
@@ -120,6 +129,33 @@ public class PropertyPojo {
     @SerializedName("a_status")
     private String a_status;
 
+
+    @SerializedName("location")
+    private String location;
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("type")
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -128,8 +164,6 @@ public class PropertyPojo {
         this.location = location;
     }
 
-    @SerializedName("location")
-    private String location;
 
 
     public String getA_status() {
@@ -138,5 +172,29 @@ public class PropertyPojo {
 
     public void setA_status(String a_status) {
         this.a_status = a_status;
+    }
+
+    public String getPer() {
+        return per;
+    }
+
+    public void setPer(String per) {
+        this.per = per;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

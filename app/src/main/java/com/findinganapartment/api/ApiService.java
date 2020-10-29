@@ -3,9 +3,11 @@ package com.findinganapartment.api;
 import com.findinganapartment.models.EditProfilePojo;
 import com.findinganapartment.models.GetPhotosPojo;
 import com.findinganapartment.models.MyRequestPojo;
+import com.findinganapartment.models.PricePojo;
 import com.findinganapartment.models.PropertyPojo;
 import com.findinganapartment.models.ResponseData;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +51,8 @@ public interface ApiService {
     @GET("rental/addfavlist.php?")
     Call<ResponseData> addfavlist(
             @Query("p_id") String p_id,
-            @Query("email") String email
+            @Query("email") String email,
+            @Query("s") String s
     );
 
 
@@ -120,8 +123,29 @@ public interface ApiService {
     @GET("/rental/getproperties.php")
     Call<List<PropertyPojo>> getproperties();
 
-    @GET("/rental/userviewpropertylist.php")
+
+    @GET("/rental/getprices.php")
+    Call<List<PricePojo>> getprices();
+
+    @GET("/rental/updateproperty.php?")
+    Call<ResponseData> updateproperty(
+            @Query("id") String id,
+            @Query("pname") String pname,
+            @Query("ptype") String ptype,
+            @Query("pbeds") String pbeds,
+            @Query("pbath") String pbath,
+            @Query("parea") String parea,
+            @Query("ppets") String ppets,
+            @Query("pprice") String pprice,
+            @Query("des") String des,
+            @Query("location") String location
+    );
+
+    @GET("/rental/testfav.php")
     Call<List<PropertyPojo>> userviewpropertylist();
+
+    @GET("/rental/landlordviewproperties.php")
+    Call<List<PropertyPojo>> landlordviewproperties(@Query("email") String email);
 
     @GET("/rental/getmyproperties.php?")
     Call<List<PropertyPojo>> getmyproperties(@Query("email") String email);
@@ -140,6 +164,15 @@ public interface ApiService {
     Call<ResponseData> updatepropertystatus(
             @Query("status") String status,
             @Query("id") String id
+    );
+
+
+    @GET("/rental/search.php")
+    Call<List<PropertyPojo>> search(
+            @Query("price") String price,
+            @Query("location") String location,
+            @Query("beds") String beds,
+            @Query("type") String type
     );
 
 

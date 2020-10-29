@@ -40,7 +40,7 @@
             android:id="@+id/login_applogo"
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_100sdp"
-            android:src="@drawable/owner"
+            android:src="@drawable/tenant"
             android:layout_centerHorizontal="true" />
 
         <CheckBox
@@ -75,7 +75,7 @@
             <ImageView
                 android:layout_width="@dimen/_150sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:src="@drawable/tenant"
+                android:src="@drawable/owner"
                 android:layout_centerHorizontal="true" />
 
             <CheckBox
