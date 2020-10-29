@@ -65,6 +65,23 @@
             />
 
 
+        <EditText
+            android:id="@+id/et_property_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_below="@+id/login_applogo"
+            android:background="@drawable/input_design"
+            android:padding="@dimen/_12sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:hint="Description"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textSize="19sp"
+            />
+
+
         <Spinner
             android:id="@+id/spin_property_type"
             android:singleLine="true"

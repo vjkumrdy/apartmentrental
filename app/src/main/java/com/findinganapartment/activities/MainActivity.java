@@ -104,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(search_prop);
                         break;
 
+                    case R.id.myrequest_list:
+                        Intent myrequest_list=new Intent(getApplicationContext(), TenantRequestActivity.class);
+                        startActivity(myrequest_list);
+                        break;
+
 
                     case R.id.wish_list:
 //                        Intent wish_list=new Intent(getApplicationContext(), EditYourProfileActivity.class);

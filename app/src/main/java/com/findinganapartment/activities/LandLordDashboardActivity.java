@@ -2,8 +2,10 @@ package com.findinganapartment.activities;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
+import com.findinganapartment.Utils;
 import com.findinganapartment.adapters.LandLordDashboardAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
@@ -39,11 +42,16 @@ public class LandLordDashboardActivity extends AppCompatActivity {
     private NavigationView nv;
     private DrawerLayout dl;
     ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
+    String session;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_land_lord_dashboard);
+
+        sharedPreferences =getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+        session = sharedPreferences.getString("uname", "def-val");
 
         getSupportActionBar().setTitle("Land Lord Dashboard");
         navigationView();
@@ -89,6 +97,12 @@ public class LandLordDashboardActivity extends AppCompatActivity {
                         startActivity(my_property);
                         break;
 
+                    case R.id.My_request:
+                        Intent My_request=new Intent(getApplicationContext(), MyRequestActivity.class);
+                        startActivity(My_request);
+                        break;
+
+
                     case R.id.logout:
                         Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
@@ -130,7 +144,7 @@ public class LandLordDashboardActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PropertyPojo>> call = service.userviewpropertylist();
+        Call<List<PropertyPojo>> call = service.landlordviewproperties(session);
         call.enqueue(new Callback<List<PropertyPojo>>() {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {
@@ -139,7 +153,7 @@ public class LandLordDashboardActivity extends AppCompatActivity {
                     Toast.makeText(LandLordDashboardActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    landLordDashboardAdapter =new LandLordDashboardAdapter(LandLordDashboardActivity.this,a1);  //attach adapter class with therecyclerview
+                    landLordDashboardAdapter =new LandLordDashboardAdapter(LandLordDashboardActivity.this,a1,session);  //attach adapter class with therecyclerview
                     property_recyclerView.setAdapter(landLordDashboardAdapter);
                 }
             }

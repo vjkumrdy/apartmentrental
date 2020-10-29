@@ -4,22 +4,33 @@
     <string name="Open">Open navigation drawer</string>
     <string name="Close">Close navigation drawer</string>
 
+    <string name="upload_image">UPLOAD IMAGE</string>
+
+    <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
+    <string name="property_desc">Being you, luxury is nothing new. For a high-Flyer, you\'ve always experienced life at the very top with premium 3 bhk  4 bhk luxurious flats in hyderabad. And now we take it many notches higher - By 36 floors! At my home bhooja, luxury property sees even greater heights. Spread across 18 acres. My home bhooja, gated community in hyderabad with exclusive 3bhk flats  4bhk flats is situated in most premium location - Hitec city. Our contemporary towers don\'t just breathe luxury, but also boast of a magnificent view of the bio-Diversity park on one side, and the cityscape on the other</string>
+
+
     <string-array name="registration">
         <item>Who are you</item>
         <item>Tenant</item>
         <item>Land Lord</item>
     </string-array>
 
-    <string name="upload_image">UPLOAD IMAGE</string>
-    <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
-    <string name="property_desc">Being you, luxury is nothing new. For a high-Flyer, you\'ve always experienced life at the very top with premium 3 bhk  4 bhk luxurious flats in hyderabad. And now we take it many notches higher - By 36 floors! At my home bhooja, luxury property sees even greater heights. Spread across 18 acres. My home bhooja, gated community in hyderabad with exclusive 3bhk flats  4bhk flats is situated in most premium location - Hitec city. Our contemporary towers don\'t just breathe luxury, but also boast of a magnificent view of the bio-Diversity park on one side, and the cityscape on the other</string>
 
+    <string-array name="property_Per">
+        <item>Week</item>
+        <item>Bi-weekly</item>
+        <item>Monthly</item>
+    </string-array>
 
     <string-array name="property_type">
         <item>Select Property Type</item>
         <item>Apartment</item>
-        <item>Villa</item>
+        <item>Condo</item>
+        <item>Basement</item>
         <item>House</item>
+        <item>TownHouse</item>
+        <item>Duplex/Triplex</item>
     </string-array>
 
     <string-array name="property_beds">
@@ -39,14 +50,19 @@
     </string-array>
 
     <string-array name="property_pets">
-
+        <item>Pets Allowed or not</item>
         <item>Allowed</item>
         <item>Not Allowed</item>
     </string-array>
+
     <string-array name="location">
-        <item>Please Select Locoation</item>
-        <item>Hyderabad</item>
-        <item>Vijayawada</item>
+        <item>Select Locoation</item>
+        <item>Montreal</item>
+        <item>Toronto</item>
+        <item>Vancouver</item>
+        <item>Halifax</item>
+        <item>Calgary</item>
+        <item>Ottawa</item>
     </string-array>
 
 </resources>

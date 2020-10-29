@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
-
 import com.findinganapartment.adapters.TenantRequestAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;

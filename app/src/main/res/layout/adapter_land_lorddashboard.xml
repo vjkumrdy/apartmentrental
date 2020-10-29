@@ -32,6 +32,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+    <LinearLayout
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:textColor="#111"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:textColor="#111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
         <LinearLayout
             android:id="@+id/ll_rightLayout"
             android:layout_marginTop="@dimen/_2sdp"
@@ -47,7 +72,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/tv_time_spam"
+                android:id="@+id/tv_property_name"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:textColor="#393838"
                 android:text="text"

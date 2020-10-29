@@ -10,5 +10,5 @@
 
     <color name="desc_color1">#FFFFFF</color> //remaining items will be in this colour
 
-    <color name="white">#128AB8</color> // when we click item that item will be tin this colour
+    <color name="white">#ffffff</color> // when we click item that item will be tin this colour
 </resources>
