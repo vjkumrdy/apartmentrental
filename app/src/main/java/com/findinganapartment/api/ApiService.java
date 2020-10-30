@@ -144,6 +144,10 @@ public interface ApiService {
     @GET("/rental/testfav.php")
     Call<List<PropertyPojo>> userviewpropertylist();
 
+
+    @GET("/rental/searchviewpropertylist.php")
+    Call<List<PropertyPojo>> searchviewpropertylist();
+
     @GET("/rental/landlordviewproperties.php")
     Call<List<PropertyPojo>> landlordviewproperties(@Query("email") String email);
 

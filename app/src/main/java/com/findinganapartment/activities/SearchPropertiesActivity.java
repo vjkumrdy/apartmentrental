@@ -25,7 +25,6 @@ import com.findinganapartment.R;
 import com.findinganapartment.adapters.SearchPropertiesAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
-
 import com.findinganapartment.models.PricePojo;
 import com.findinganapartment.models.PropertyPojo;
 
@@ -77,14 +76,14 @@ public class SearchPropertiesActivity extends AppCompatActivity {
 
 
 
-       spin_price=(Spinner)findViewById(R.id.spin_price);
+        spin_price=(Spinner)findViewById(R.id.spin_price);
         spin_ptype=(Spinner)findViewById(R.id.spin_ptype);
         spin_ptype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i > 0){
 
-                   searchPropertiesAdapter.property_type_filter(spin_ptype.getSelectedItem().toString());
+                    searchPropertiesAdapter.property_type_filter(spin_ptype.getSelectedItem().toString());
                 }
             }
 
@@ -115,7 +114,7 @@ public class SearchPropertiesActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PropertyPojo>> call = service.userviewpropertylist();
+        Call<List<PropertyPojo>> call = service.searchviewpropertylist();
         call.enqueue(new Callback<List<PropertyPojo>>() {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {
@@ -160,9 +159,9 @@ public class SearchPropertiesActivity extends AppCompatActivity {
         });
     }
 
-   private void apartmentprice() {
+    private void apartmentprice() {
         ApiService apiService = RetroClient.getRetrofitInstance().create(ApiService.class);
-       Call<List<PricePojo>> call = apiService.getprices();
+        Call<List<PricePojo>> call = apiService.getprices();
         call.enqueue(new Callback<List<PricePojo>>() {
             @Override
             public void onResponse(Call<List<PricePojo>> call, Response<List<PricePojo>> response) {
