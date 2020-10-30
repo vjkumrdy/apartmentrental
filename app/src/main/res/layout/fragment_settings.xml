@@ -10,6 +10,18 @@
 
     <TextView
         android:id="@+id/et_search"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="false"
+        android:fontFamily="sans-serif-black"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:singleLine="true"
+        android:drawablePadding="@dimen/_3sdp" />
+
+    <TextView
+        android:id="@+id/et_search1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusableInTouchMode="false"
@@ -28,6 +40,8 @@
         android:layout_gravity="center"
         android:singleLine="true"
         android:drawablePadding="@dimen/_3sdp" />
+
+
 
     <SeekBar
         android:id="@+id/seekBar"
