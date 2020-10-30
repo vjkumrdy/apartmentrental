@@ -21,24 +21,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.RegistrationActivity" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.RegistrationActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.LandLordDashboardActivity" />
         <activity android:name=".activities.AdminDashBoardActivity" />
         <activity android:name=".activities.AdminLoginActivity" />
         <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.AddPropertyActivity" />
+        <activity
+            android:name=".activities.AddPropertyActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.LandLordEditProfileActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
-        <activity android:name=".activities.EditYourProfileActivity" />
+        <activity
+            android:name=".activities.EditYourProfileActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.AllPropertiesActivity" />
         <activity android:name=".activities.AdminEditProfileActivity" />
         <activity android:name=".activities.MyPropertiesActivity" />
-        <activity android:name=".activities.EditMyPropertiesActivity" />
+        <activity
+            android:name=".activities.EditMyPropertiesActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.SearchPropertiesActivity" />
         <activity android:name=".activities.DetailsOfProperties" />
-
-
+        <activity android:name=".activities.ImageUploadActivity" />
     </application>
+
 
 </manifest>
