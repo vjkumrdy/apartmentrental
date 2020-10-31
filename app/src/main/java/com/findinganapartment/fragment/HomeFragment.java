@@ -61,9 +61,6 @@ public class HomeFragment extends Fragment {
         property_recyclerView.setLayoutManager(linearLayoutManager);
         serverData();
 
-
-
-
         return view;
     }
 
@@ -73,7 +70,9 @@ public class HomeFragment extends Fragment {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PropertyPojo>> call = service.userviewpropertylist();
+        Call<List<PropertyPojo>> call = service.userviewpropertylist(session);
+
+
         call.enqueue(new Callback<List<PropertyPojo>>() {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {

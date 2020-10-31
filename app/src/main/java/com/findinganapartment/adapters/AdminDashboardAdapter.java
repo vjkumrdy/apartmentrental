@@ -53,7 +53,7 @@ public class AdminDashboardAdapter extends RecyclerView.Adapter<AdminDashboardAd
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
-        holder.tv_price.setText(a1.get(pos).getP_price()+"$");
+        holder.tv_price.setText(a1.get(pos).getP_price()+"$" +"/"+a1.get(pos).getPer());
         holder.tv_time_spam.setText(" - "+a1.get(pos).getP_name());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
         holder.tv_pets.setText(a1.get(pos).getP_pets());

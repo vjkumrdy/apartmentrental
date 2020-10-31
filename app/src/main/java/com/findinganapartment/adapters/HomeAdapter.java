@@ -85,13 +85,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
             }
         });
 
-        if(a1.get(pos).getStatus().equals("Like") && a1.get(pos).getEmail().equals(session))
+        if(a1.get(pos).getStatus().equals("Unlike"))
+        {
+          //  a1.get(pos).getStatus().="Unlike";
+             holder.tv_offer.setText(a1.get(pos).getP_owner());
+            holder.img_fav.setImageResource(R.drawable.ic_heart1);
+        }
+        if (a1.get(pos).getStatus().equals("Like") && a1.get(pos).getEmail().equals(session))
         {
 
             holder.tv_offer.setText(a1.get(pos).getP_owner());
             holder.img_fav.setImageResource(R.drawable.ic_fav);
 
         }
+
+
+
        // Toast.makeText(context, ""+a1.get(pos).getStatus(), Toast.LENGTH_SHORT).show();
 
 
