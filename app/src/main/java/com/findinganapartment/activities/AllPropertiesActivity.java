@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
 import com.findinganapartment.adapters.AllPropertiesAdapter;
+import com.findinganapartment.adapters.HomeAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
 import com.findinganapartment.models.PropertyPojo;
@@ -60,7 +61,7 @@ public class AllPropertiesActivity extends AppCompatActivity {
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
-        Call<List<PropertyPojo>> call = service.userviewpropertylist();
+        Call<List<PropertyPojo>> call = service.userviewpropertylist(session);
         call.enqueue(new Callback<List<PropertyPojo>>() {
             @Override
             public void onResponse(Call<List<PropertyPojo>> call, Response<List<PropertyPojo>> response) {

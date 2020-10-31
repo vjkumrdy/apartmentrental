@@ -142,7 +142,7 @@ public interface ApiService {
     );
 
     @GET("/rental/testfav.php")
-    Call<List<PropertyPojo>> userviewpropertylist();
+    Call<List<PropertyPojo>> userviewpropertylist(@Query("email") String email);
 
 
     @GET("/rental/searchviewpropertylist.php")

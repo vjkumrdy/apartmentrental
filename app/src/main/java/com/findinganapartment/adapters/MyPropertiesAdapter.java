@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
 import com.findinganapartment.activities.EditMyPropertiesActivity;
+import com.findinganapartment.activities.ImageUploadActivity;
 import com.findinganapartment.activities.MyPropertiesActivity;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
@@ -60,15 +61,25 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
 
 
         Glide.with(context).load(a1.get(pos).getP_pic()).into(holder.image_view);
-        holder.tv_price.setText(a1.get(pos).getP_price());
+        holder.tv_price.setText(a1.get(pos).getP_price()+"$" +"/"+a1.get(pos).getPer());
         holder.tv_time_spam.setText(" -  "+a1.get(pos).getP_name());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
         holder.tv_baths.setText(a1.get(pos).getP_bath());
         holder.tv_pets.setText(a1.get(pos).getP_pets());
         holder.tv_sq_feet.setText(a1.get(pos).getP_area());
+        holder.tv_location.setText("Location :"+a1.get(pos).getLocation());
         holder.tv_apart_type.setText(a1.get(pos).getP_type());
 
+        holder.image_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ImageUploadActivity.class);
+                intent.putExtra("id",a1.get(pos).getPid());
+                context.startActivity(intent);
 
+
+            }
+        });
 
 
         holder.edit_property.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +87,11 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             public void onClick(View view) {
                 Intent intent=new Intent(context, EditMyPropertiesActivity.class);
                 intent.putExtra("image",a1.get(pos).getP_pic());
+                intent.putExtra("id",a1.get(pos).getPid());
                 intent.putExtra("price",a1.get(pos).getP_price());
                 intent.putExtra("property_name",a1.get(pos).getP_name());
+                intent.putExtra("description",a1.get(pos).getDescription());
+                intent.putExtra("location",a1.get(pos).getLocation());
                 intent.putExtra("beds",a1.get(pos).getP_beds());
                 intent.putExtra("bath",a1.get(pos).getP_bath());
                 intent.putExtra("pets",a1.get(pos).getP_pets());
@@ -107,7 +121,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer;
+        TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer,tv_location;
         ImageView image_view;
         CardView My_properties;
         Button edit_property,delete_property;
@@ -124,6 +138,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             tv_sq_feet= (TextView) itemView.findViewById(R.id.tv_sq_feet);
             tv_pets= (TextView) itemView.findViewById(R.id.tv_pets);
             tv_offer= (TextView) itemView.findViewById(R.id.tv_offer);
+            tv_location= (TextView) itemView.findViewById(R.id.tv_location);
             image_view=(ImageView)itemView.findViewById(R.id.image_view);
 
             My_properties=(CardView)itemView.findViewById(R.id.My_properties);
@@ -139,6 +154,7 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             tv_beds.setTypeface(custom_font);
             tv_pets.setTypeface(custom_font);
             tv_sq_feet.setTypeface(custom_font);
+            tv_location.setTypeface(custom_font);
 
         }
     }

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
-import com.findinganapartment.activities.DetailsOfProperties;
+import com.findinganapartment.activities.ViewPropertyImagesActivity;
 import com.findinganapartment.models.PropertyPojo;
 
 import java.util.List;
@@ -24,10 +24,12 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
 
     Context context;
     List<PropertyPojo> a1;
+    String session;
 
-    public WishListAdapter(Context context, List<PropertyPojo> categoty) {
+    public WishListAdapter(Context context, List<PropertyPojo> categoty, String session) {
         this.context = context;
         this.a1 = categoty;
+        this.session=session;
     }
 
     public void setMovieList(List<PropertyPojo> a1) {
@@ -46,8 +48,9 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
 
 
         Glide.with(context).load(a1.get(pos).getP_pic()).into(holder.image_view);
-        holder.tv_price.setText(a1.get(pos).getP_price());
+        holder.tv_price.setText(a1.get(pos).getP_price()+"$" +"/"+a1.get(pos).getPer());
         holder.tv_time_spam.setText(" -  "+a1.get(pos).getP_name());
+        holder.tv_location.setText("Location :"+a1.get(pos).getLocation());
         holder.tv_beds.setText(a1.get(pos).getP_beds());
         holder.tv_baths.setText(a1.get(pos).getP_bath());
         holder.tv_pets.setText(a1.get(pos).getP_pets());
@@ -57,14 +60,17 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
         holder.image_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, DetailsOfProperties.class);
+                Intent intent=new Intent(context, ViewPropertyImagesActivity.class);
                 intent.putExtra("image",a1.get(pos).getP_pic());
+                intent.putExtra("pid",a1.get(pos).getPid());
                 intent.putExtra("price",a1.get(pos).getP_price());
                 intent.putExtra("beds",a1.get(pos).getP_beds());
                 intent.putExtra("bath",a1.get(pos).getP_bath());
                 intent.putExtra("area_sq_ft",a1.get(pos).getP_area());
                 intent.putExtra("pets",a1.get(pos).getP_pets());
-                intent.putExtra("location",a1.get(pos).getP_name());
+                intent.putExtra("location",a1.get(pos).getLocation());
+                intent.putExtra("type",a1.get(pos).getType());
+                intent.putExtra("username",session);
                 context.startActivity(intent);
             }
         });
@@ -86,7 +92,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer;
+        TextView tv_apart_type,tv_price,tv_time_spam,tv_beds,tv_baths,tv_sq_feet,tv_pets,tv_offer,tv_location;
         ImageView image_view;
         CardView My_properties;
 
@@ -102,6 +108,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
             tv_sq_feet= (TextView) itemView.findViewById(R.id.tv_sq_feet);
             tv_pets= (TextView) itemView.findViewById(R.id.tv_pets);
             tv_offer= (TextView) itemView.findViewById(R.id.tv_offer);
+            tv_location= (TextView) itemView.findViewById(R.id.tv_location);
             image_view=(ImageView)itemView.findViewById(R.id.image_view);
 
             My_properties=(CardView)itemView.findViewById(R.id.My_properties);

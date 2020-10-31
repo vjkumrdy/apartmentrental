@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
 import com.findinganapartment.models.GetPhotosPojo;
 
@@ -40,7 +39,7 @@ public class ViewPropertyImageAdapter extends RecyclerView.Adapter<ViewPropertyI
     public void onBindViewHolder(@NonNull MyviewHolder holder, final int pos) {
 
 
-        Glide.with(context).load(a1.get(pos).getPhoto()).into(holder.im_view);
+        //Glide.with(context).load(a1.get(pos).getPhoto()).into(holder.im_view);
 
 
     }
@@ -61,7 +60,7 @@ public class ViewPropertyImageAdapter extends RecyclerView.Adapter<ViewPropertyI
         public MyviewHolder(View itemView) {
             super(itemView);
 
-            im_view=(ImageView)itemView.findViewById(R.id.image_view);
+            //im_view=(ImageView)itemView.findViewById(R.id.im_view);
 
 
 
