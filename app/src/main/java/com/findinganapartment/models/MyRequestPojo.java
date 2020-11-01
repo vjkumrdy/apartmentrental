@@ -66,6 +66,23 @@ public class MyRequestPojo {
     @SerializedName("lmsg")
     private String lmsg;
 
+    @SerializedName("from")
+    private String from;
+
+    @SerializedName("to")
+    private String to;
+
+    @SerializedName("message")
+    private String message;
+
+    @SerializedName("frm")
+    private String frm;
+
+    @SerializedName("eto")
+    private String eto;
+
+    @SerializedName("id")
+    private String id;
 
     public String getLname() {
         return lname;
@@ -82,4 +99,54 @@ public class MyRequestPojo {
     public void setLmsg(String lmsg) {
         this.lmsg = lmsg;
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getFrm() {
+        return frm;
+    }
+
+    public void setFrm(String frm) {
+        this.frm = frm;
+    }
+
+    public String getEto() {
+        return eto;
+    }
+
+    public void setEto(String eto) {
+        this.eto = eto;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
+
+

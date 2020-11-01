@@ -122,6 +122,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
                 intent.putExtra("pets",a1.get(pos).getP_pets());
                 intent.putExtra("location",a1.get(pos).getLocation());
                 intent.putExtra("type",a1.get(pos).getType());
+                intent.putExtra("owner",a1.get(pos).getP_owner());
                 intent.putExtra("username",session);
                 context.startActivity(intent);
             }
@@ -174,7 +175,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
         }
     }
     ProgressDialog progressDialog;
-    public void serverData(String id,String session,final String s){
+    public void serverData(String id, String session, final String s){
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
@@ -185,11 +186,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 progressDialog.dismiss();
                 if(response.body()==null){
-                    Toast.makeText(context,"Server issue",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Server issue", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     context.startActivity(new Intent(context, MainActivity.class));
-                    Toast.makeText(context,response.body().message,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,response.body().message, Toast.LENGTH_SHORT).show();
                     //((Activity)context).finish();
                 }
             }

@@ -140,7 +140,7 @@ public class AdminDashboardAdapter extends RecyclerView.Adapter<AdminDashboardAd
         }
     }
     ProgressDialog progressDialog;
-    public void serverData(String id,String status){
+    public void serverData(String id, String status){
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
@@ -153,11 +153,11 @@ public class AdminDashboardAdapter extends RecyclerView.Adapter<AdminDashboardAd
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 progressDialog.dismiss();
                 if(response.body()==null){
-                    Toast.makeText(context,"Server issue",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Server issue", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent intent=new Intent(context, AdminDashBoardActivity.class);
                     context.startActivity(intent);
-                    Toast.makeText(context,"Status updated successfully",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Status updated successfully", Toast.LENGTH_SHORT).show();
 
                 }
             }

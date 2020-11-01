@@ -170,10 +170,10 @@ public class MyPropertiesAdapter extends RecyclerView.Adapter<MyPropertiesAdapte
             public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
                 progressDialog.dismiss();
                 if(response.body()==null){
-                    Toast.makeText(context,"Server issue",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Server issue", Toast.LENGTH_SHORT).show();
                 }else {
                     context.startActivity(new Intent(context, MyPropertiesActivity.class));
-                    Toast.makeText(context,"Deleted successfully",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Deleted successfully", Toast.LENGTH_SHORT).show();
                     ((Activity)context).finish();
 
                 }
