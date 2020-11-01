@@ -84,9 +84,15 @@ public class ViewPropertyImagesActivity extends AppCompatActivity {
         btn_book_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ViewPropertyImagesActivity.this, BookingActivity.class);
+                Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("pid").toString()+getIntent().getStringExtra("username").toString()+getIntent().getStringExtra("owner").toString(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("username").toString(), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("owner").toString(), Toast.LENGTH_SHORT).show();
+
+
+                Intent intent=new Intent(ViewPropertyImagesActivity.this, messagingactivity.class);
                 intent.putExtra("pid",getIntent().getStringExtra("pid"));
-                intent.putExtra("uname",getIntent().getStringExtra("username"));
+                intent.putExtra("from",getIntent().getStringExtra("username"));
+                intent.putExtra("to",getIntent().getStringExtra("owner"));
                 startActivity(intent);
 
             }

@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.wish_list:
 //                        Intent wish_list=new Intent(getApplicationContext(), EditYourProfileActivity.class);
 //                        startActivity(wish_list);
-                        Toast.makeText(MainActivity.this,"Comming Soon...",Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this,"Comming Soon...", Toast.LENGTH_LONG).show();
                         break;
 
 

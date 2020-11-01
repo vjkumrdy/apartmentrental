@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SearchFilterActivity"></activity>
+        <activity android:name=".activities.MessageActivity"></activity>
+        <activity android:name=".activities.messagingactivity" />
+        <activity android:name=".activities.SearchFilterActivity" />
         <activity android:name=".activities.TenantRequestActivity" />
         <activity android:name=".activities.ReplyActivity" />
         <activity android:name=".activities.MyRequestActivity" />
@@ -55,6 +57,8 @@
         <activity android:name=".activities.DetailsOfProperties" />
         <activity android:name=".activities.ImageUploadActivity" />
     </application>
+
+
 
 
 

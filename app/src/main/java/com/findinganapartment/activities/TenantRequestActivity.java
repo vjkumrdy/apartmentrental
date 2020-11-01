@@ -35,7 +35,7 @@ public class TenantRequestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tenant_request);
-        getSupportActionBar().setTitle("My Requests");
+        getSupportActionBar().setTitle("Inbox");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

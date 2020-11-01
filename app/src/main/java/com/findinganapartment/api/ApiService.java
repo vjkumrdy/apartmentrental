@@ -6,6 +6,7 @@ import com.findinganapartment.models.MyRequestPojo;
 import com.findinganapartment.models.PricePojo;
 import com.findinganapartment.models.PropertyPojo;
 import com.findinganapartment.models.ResponseData;
+import com.findinganapartment.models.msgs;
 
 import java.util.List;
 import java.util.Map;
@@ -194,5 +195,16 @@ public interface ApiService {
 
     @GET("/rental/getfavlist.php")
     Call<List<PropertyPojo>> getfavlist( @Query("email") String email);
+
+    @GET("/rental/chat.php")
+    Call<ResponseData> msglist(@Query("frm") String frm ,
+                               @Query("eto") String eto ,
+                               @Query("pid") String pid,
+                               @Query("message") String message);
+
+    @GET("/rental/getchat.php")
+    Call<List<msgs>> getchat(@Query("frm") String from,
+                             @Query("eto") String to,
+                             @Query("pid") String pid );
 
 }

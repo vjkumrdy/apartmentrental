@@ -259,7 +259,7 @@
 
     <Button
         android:id="@+id/btn_book_now"
-        android:text="Book Now"
+        android:text="Chat Now"
         android:textAllCaps="false"
         android:layout_below="@+id/et_pwd"
         android:layout_gravity="center"

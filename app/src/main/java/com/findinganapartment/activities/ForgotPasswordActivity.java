@@ -44,7 +44,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(et_email.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(),"Enter your Email",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Enter your Email", Toast.LENGTH_LONG).show();
                     return;
                 }
                 //submitdata();

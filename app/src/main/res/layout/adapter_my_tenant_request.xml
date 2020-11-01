@@ -3,7 +3,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/My_properties"
+    android:id="@+id/my_inbox"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_2sdp"
@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/tv_msg"
+                android:visibility="gone"
                 android:textSize="@dimen/_12sdp"
                 android:layout_margin="@dimen/_5sdp"
                 android:layout_width="wrap_content"
@@ -71,7 +72,7 @@
                 android:id="@+id/tv_lmsg"
                 android:background="#009688"
                 android:textColor="#ffffff"
-
+                android:visibility="gone"
                 android:textSize="@dimen/_12sdp"
                 android:padding="5dp"
                 android:layout_margin="@dimen/_5sdp"
