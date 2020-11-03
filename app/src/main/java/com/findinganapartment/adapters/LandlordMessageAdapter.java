@@ -1,14 +1,15 @@
 package com.findinganapartment.adapters;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
 import com.findinganapartment.models.msgs;
@@ -16,14 +17,11 @@ import com.findinganapartment.models.msgs;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class messagesadapter extends RecyclerView.Adapter<messagesadapter.MessagesViewHolder> {
+public class LandlordMessageAdapter extends RecyclerView.Adapter<LandlordMessageAdapter.MessagesViewHolder> {
 
     private final Context context;
 
-    public messagesadapter(List<msgs> msg, String from, Context context){
+    public LandlordMessageAdapter(List<msgs> msg, String from, Context context){
         this.from=from;
         this.context=context;
         this.msg=msg;
@@ -43,9 +41,13 @@ public class messagesadapter extends RecyclerView.Adapter<messagesadapter.Messag
     public void onBindViewHolder(@NonNull MessagesViewHolder holder, int position) {
         msgs m=msg.get(position);
         if(m.getFrom().equals(from)){
+//            holder.msgfield.setBackground(context.getResources().getDrawable(R.drawable.input_design));
+//            holder.msgfield.setGravity(Gravity.RIGHT);
+            //holder.msgfield.setText("From:"+"\n"+m.getMessage());
             holder.msgfield.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
             holder.msgfield.setGravity(Gravity.LEFT);
-            holder.msgfield.setTextColor(Color.parseColor("#ffffff"));
+
+            holder.msgfield.setTextColor(Color.parseColor("#000000"));
 
         }
         holder.msgfield.setText(m.getMessage());

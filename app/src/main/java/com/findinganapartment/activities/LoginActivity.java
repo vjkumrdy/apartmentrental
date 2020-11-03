@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         tv_forget_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                Intent intent=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
                 startActivity(intent);
 
             }
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         tv_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, RegistrationActivity.class);
+                Intent intent=new Intent(LoginActivity.this,RegistrationActivity.class);
                 startActivity(intent);
 
             }
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         login_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, AdminLoginActivity.class));
+                startActivity(new Intent(LoginActivity.this,AdminLoginActivity.class));
 
             }
         });
