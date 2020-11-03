@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
-import com.findinganapartment.activities.MessageActivity;
+import com.findinganapartment.activities.LandlordMessageActivity;
 import com.findinganapartment.models.MyRequestPojo;
 
 import java.util.List;
@@ -57,12 +57,12 @@ public class MyRequestAdapter extends BaseAdapter {
         tv_pid.setText("Property Id :" + ar.get(pos).getPid());
 
         TextView tv_from = (TextView) obj2.findViewById(R.id.tv_from);
-        tv_from.setText("Me :" + ar.get(pos).getFrm());
+        tv_from.setText("Me :" + ar.get(pos).getEto());
 
 
 
         TextView tv_to = (TextView) obj2.findViewById(R.id.tv_to);
-        tv_to.setText("To :" + ar.get(pos).getEto());
+        tv_to.setText("From :" + ar.get(pos).getFrm());
 
 
         CardView my_inbox=(CardView)obj2.findViewById(R.id.my_inbox);
@@ -70,7 +70,7 @@ public class MyRequestAdapter extends BaseAdapter {
         my_inbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(cnt, MessageActivity.class);
+                Intent intent=new Intent(cnt, LandlordMessageActivity.class);
                 intent.putExtra("pid",ar.get(pos).getPid());
                 intent.putExtra("from",ar.get(pos).getFrm());
                 intent.putExtra("to",ar.get(pos).getEto());
