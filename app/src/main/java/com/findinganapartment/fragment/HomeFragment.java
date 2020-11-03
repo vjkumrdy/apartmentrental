@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
 
     public void serverData(){
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading.....");
+        progressDialog.setMessage("Loading....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
