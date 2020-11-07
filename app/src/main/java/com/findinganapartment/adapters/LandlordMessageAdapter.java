@@ -1,8 +1,6 @@
 package com.findinganapartment.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,24 +30,33 @@ public class LandlordMessageAdapter extends RecyclerView.Adapter<LandlordMessage
     @NonNull
     @Override
     public MessagesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.messagesview, parent, false);
-        return new MessagesViewHolder(itemView);
+        View itemView =null;
+        if(viewType==1){
+            itemView= LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.messagesview, parent, false);
+            return new MessagesViewHolder(itemView);
+        }else{
+            itemView= LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.msgview, parent, false);
+            return new MessagesViewHolder(itemView);
+        }
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        if(msg.get(position).getFrom().equals(from)){
+            return 1;
+        }
+        else{
+            return 2;
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessagesViewHolder holder, int position) {
         msgs m=msg.get(position);
-        if(m.getFrom().equals(from)){
-//            holder.msgfield.setBackground(context.getResources().getDrawable(R.drawable.input_design));
-//            holder.msgfield.setGravity(Gravity.RIGHT);
-            //holder.msgfield.setText("From:"+"\n"+m.getMessage());
-            holder.msgfield.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            holder.msgfield.setGravity(Gravity.LEFT);
 
-            holder.msgfield.setTextColor(Color.parseColor("#000000"));
-
-        }
         holder.msgfield.setText(m.getMessage());
     }
 

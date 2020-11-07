@@ -202,20 +202,29 @@
             android:layout_height="wrap_content"/>
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
+            android:layout_height="wrap_content">
 
-            >
+
+            <ImageView
+                android:tag="heart"
+                android:id="@+id/img_fav"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/_18sdp"
+                android:src="@drawable/ic_heart1" />
+
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="20dp"
-
-                android:src="@drawable/verify"
-                />
+                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginLeft="@dimen/_170sdp"
+                android:src="@drawable/verify" />
 
         </LinearLayout>
+
+
     </LinearLayout>
 
 

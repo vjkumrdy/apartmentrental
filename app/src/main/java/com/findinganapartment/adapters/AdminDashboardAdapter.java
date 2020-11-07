@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class  AdminDashboardAdapter extends RecyclerView.Adapter<AdminDashboardAdapter.MyviewHolder> {
+public class AdminDashboardAdapter extends RecyclerView.Adapter<AdminDashboardAdapter.MyviewHolder> {
 
     Context context;
     List<PropertyPojo> a1;

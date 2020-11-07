@@ -212,6 +212,7 @@
 
 
             <ImageView
+
                 android:id="@+id/img_fav"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
