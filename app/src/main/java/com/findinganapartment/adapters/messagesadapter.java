@@ -1,23 +1,18 @@
 package com.findinganapartment.adapters;
 
-import android.app.Application;
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
 import com.findinganapartment.models.msgs;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class messagesadapter extends RecyclerView.Adapter<messagesadapter.MessagesViewHolder> {
 
@@ -29,34 +24,42 @@ public class messagesadapter extends RecyclerView.Adapter<messagesadapter.Messag
         this.msg=msg;
 
     }
-    List<msgs> msg=new ArrayList<>();
+    List<msgs> msg;
     String from;
     @NonNull
     @Override
     public MessagesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.messagesview, parent, false);
-        return new MessagesViewHolder(itemView);
+        View itemView =null;
+        if(viewType==1){
+            itemView= LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.messagesview, parent, false);
+            return new MessagesViewHolder(itemView);
+        }else{
+            itemView= LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.msgview, parent, false);
+            return new MessagesViewHolder(itemView);
+        }
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+       if(msg.get(position).getFrom().equals(from)){
+           return 1;
+       }
+       else{
+           return 2;
+       }
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessagesViewHolder holder, int position) {
-        msgs m=msg.get(position);
-        if(m.getFrom().equals(from)){
-            holder.msgfield.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            holder.msgfield.setGravity(Gravity.LEFT);
-            holder.msgfield.setTextColor(Color.parseColor("#ffffff"));
+msgs m=msg.get(position);
 
-        }
-        holder.msgfield.setText(m.getMessage());
+holder.msgfield.setText(m.getMessage());
     }
 
-    public void data(List<msgs> msg){
-        this.msg=msg;
-        notifyDataSetChanged();
 
-
-    }
 
     @Override
     public int getItemCount() {
@@ -64,10 +67,10 @@ public class messagesadapter extends RecyclerView.Adapter<messagesadapter.Messag
     }
 
     class MessagesViewHolder extends  RecyclerView.ViewHolder{
-        TextView msgfield;
+TextView msgfield;
         public MessagesViewHolder(@NonNull View itemView) {
             super(itemView);
-            msgfield=itemView.findViewById(R.id.msgs);
+msgfield=itemView.findViewById(R.id.msgs);
         }
 
     }

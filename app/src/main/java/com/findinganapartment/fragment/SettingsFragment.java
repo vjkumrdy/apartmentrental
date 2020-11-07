@@ -103,7 +103,7 @@ public class SettingsFragment extends Fragment {
                 progress = progress * 1000;
                 //Toast.makeText(getContext(), ""+progress, Toast.LENGTH_SHORT).show();
                 et_search.setText(String.valueOf(progress));
-                et_search1.setText("Selected Range is : "+ String.valueOf(progress)+"$");
+                et_search1.setText("Selected Range is : "+String.valueOf(progress)+"$");
             }
 
             @Override

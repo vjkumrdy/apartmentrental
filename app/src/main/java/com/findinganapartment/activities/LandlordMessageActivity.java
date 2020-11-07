@@ -37,7 +37,7 @@ public class LandlordMessageActivity extends AppCompatActivity {
     EditText msgtext;
     ProgressDialog pd;
     Button send;
-    com.findinganapartment.adapters.LandlordMessageAdapter lmessagesadapter;
+    LandlordMessageAdapter lmessagesadapter;
     Runnable r;
     RecyclerView recyclerView;
     Handler h=new Handler();

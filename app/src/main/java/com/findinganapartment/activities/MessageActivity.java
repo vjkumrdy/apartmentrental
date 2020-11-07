@@ -1,6 +1,11 @@
 package com.findinganapartment.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -8,10 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
 import com.findinganapartment.adapters.messagesadapter;
@@ -37,10 +38,11 @@ public class MessageActivity extends AppCompatActivity {
     EditText msgtext;
     ProgressDialog pd;
     Button send;
-    com.findinganapartment.adapters.messagesadapter messagesadapter;
+    messagesadapter messagesadapter;
     Runnable r;
     RecyclerView recyclerView;
     Handler h=new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +65,13 @@ public class MessageActivity extends AppCompatActivity {
         frm=getIntent().getStringExtra("from");
         eto=getIntent().getStringExtra("to");
         Log.d("checktool",frm+""+eto);
-        final RecyclerView recyclerView=findViewById(R.id.messages);
+        recyclerView=findViewById(R.id.messages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 //        pd = new ProgressDialog(getApplicationContext());
 //        pd.setTitle("Please wait,Data is being loading.");
 //        pd.show();
-        messagesadapter=new messagesadapter(msg,frm, MessageActivity.this);
+        messagesadapter=new messagesadapter(msg,frm,MessageActivity.this);
         recyclerView.setAdapter(messagesadapter);
 
         r =new Runnable() {
@@ -97,12 +99,15 @@ public class MessageActivity extends AppCompatActivity {
                     Toast.makeText(MessageActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     // pd.dismiss();
-                    Log.d("testtt",response.toString());
-                    msg = response.body();
-                    messagesadapter.data(msg);
-                    //messagesadapter.notifyDataSetChanged();
-                //    recyclerView.smoothScrollToPosition(msg.size()-1);
-
+                    if(response.body().size()>0) {
+                        Log.d("testtt", response.toString());
+                        msg.clear();
+                        msg.addAll(response.body());
+                        Log.d("kruthik", msg.toString());
+                        messagesadapter.notifyDataSetChanged();
+                        //messagesadapter.notifyDataSetChanged();
+                        recyclerView.smoothScrollToPosition(msg.size() - 1);
+                    }
                 }
             }
 
@@ -112,7 +117,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
-    public  void sendMessage(final String frm, final String eto, final String pid) {
+    public  void sendMessage(final String frm, final  String eto, final String pid) {
 //        pd = new ProgressDialog(getApplicationContext());
 //        pd.setTitle("Please wait, message sending.");
 //        pd.show();
