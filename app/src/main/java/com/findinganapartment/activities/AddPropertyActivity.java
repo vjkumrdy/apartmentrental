@@ -1,7 +1,6 @@
 package com.findinganapartment.activities;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -105,16 +104,16 @@ public class AddPropertyActivity extends AppCompatActivity implements EasyPermis
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, AddPropertyActivity.this);
     }
-    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REQUEST_GALLERY_CODE && resultCode == Activity.RESULT_OK){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_GALLERY_CODE && resultCode == Activity.RESULT_OK) {
             uri = data.getData();
-            if(EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            if (EasyPermissions.hasPermissions(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 String filePath = getRealPathFromURIPath(uri, AddPropertyActivity.this);
                 file = new File(filePath);
 
-            }else{
+            } else {
                 EasyPermissions.requestPermissions(this, getString(R.string.read_file), READ_REQUEST_CODE, Manifest.permission.READ_EXTERNAL_STORAGE);
             }
         }
