@@ -1,6 +1,7 @@
 package com.findinganapartment.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -104,6 +105,7 @@ public class AddPropertyActivity extends AppCompatActivity implements EasyPermis
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, AddPropertyActivity.this);
     }
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_GALLERY_CODE && resultCode == Activity.RESULT_OK){
