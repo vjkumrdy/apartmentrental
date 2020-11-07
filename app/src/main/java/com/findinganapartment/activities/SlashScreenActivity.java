@@ -14,7 +14,7 @@ public class SlashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
         getSupportActionBar().hide();
-        final int ScreenDisplay = 2000;
+        final int ScreenDisplay = 1500;
         Thread t1=new Thread(){
             int wait1=0;
             public void run(){
