@@ -140,7 +140,7 @@ public class LandLordDashboardActivity extends AppCompatActivity {
 
     public void serverData(){
         progressDialog = new ProgressDialog(LandLordDashboardActivity.this);
-        progressDialog.setMessage("Loading....");
+        progressDialog.setMessage("Loading.....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);
