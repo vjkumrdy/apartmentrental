@@ -76,6 +76,8 @@ public class LandLordDashboardAdapter extends RecyclerView.Adapter<LandLordDashb
                 intent.putExtra("type",a1.get(pos).getType());
                 intent.putExtra("owner",a1.get(pos).getP_owner());
                 intent.putExtra("username",session);
+                intent.putExtra("per",a1.get(pos).getPer());
+
                 context.startActivity(intent);
             }
         });

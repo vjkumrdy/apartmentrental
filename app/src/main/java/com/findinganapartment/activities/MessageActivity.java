@@ -1,11 +1,6 @@
 package com.findinganapartment.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.findinganapartment.R;
 import com.findinganapartment.adapters.messagesadapter;
@@ -38,7 +37,7 @@ public class MessageActivity extends AppCompatActivity {
     EditText msgtext;
     ProgressDialog pd;
     Button send;
-    messagesadapter messagesadapter;
+    com.findinganapartment.adapters.messagesadapter messagesadapter;
     Runnable r;
     RecyclerView recyclerView;
     Handler h=new Handler();
@@ -65,13 +64,13 @@ public class MessageActivity extends AppCompatActivity {
         frm=getIntent().getStringExtra("from");
         eto=getIntent().getStringExtra("to");
         Log.d("checktool",frm+""+eto);
-        recyclerView=findViewById(R.id.messages);
+      recyclerView=findViewById(R.id.messages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 //        pd = new ProgressDialog(getApplicationContext());
 //        pd.setTitle("Please wait,Data is being loading.");
 //        pd.show();
-        messagesadapter=new messagesadapter(msg,frm,MessageActivity.this);
+        messagesadapter=new messagesadapter(msg,frm, MessageActivity.this);
         recyclerView.setAdapter(messagesadapter);
 
         r =new Runnable() {
@@ -117,7 +116,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
     }
-    public  void sendMessage(final String frm, final  String eto, final String pid) {
+    public  void sendMessage(final String frm, final String eto, final String pid) {
 //        pd = new ProgressDialog(getApplicationContext());
 //        pd.setTitle("Please wait, message sending.");
 //        pd.show();

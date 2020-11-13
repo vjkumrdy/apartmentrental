@@ -1,6 +1,8 @@
 package com.findinganapartment.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +24,7 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarFinalValueListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.findinganapartment.R;
+import com.findinganapartment.Utils;
 import com.findinganapartment.adapters.SearchPropertiesAdapter;
 import com.findinganapartment.api.ApiService;
 import com.findinganapartment.api.RetroClient;
@@ -45,7 +48,8 @@ public class SearchPropertiesActivity extends AppCompatActivity {
     EditText searchView;
     Spinner spin_price,spin_ptype;
     String[] propertytype;
-
+    SharedPreferences sharedPreferences;
+    String session;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,9 @@ public class SearchPropertiesActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Search Properties");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
+        session = sharedPreferences.getString("uname", "def-val");
 
         final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar)findViewById(R.id.rangeSeekbar1);
         rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
@@ -123,7 +130,7 @@ public class SearchPropertiesActivity extends AppCompatActivity {
                     Toast.makeText(SearchPropertiesActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    searchPropertiesAdapter=new SearchPropertiesAdapter(SearchPropertiesActivity.this,a1);  //attach adapter class with therecyclerview
+                    searchPropertiesAdapter=new SearchPropertiesAdapter(SearchPropertiesActivity.this,a1,session);  //attach adapter class with therecyclerview
                     property_recyclerView.setAdapter(searchPropertiesAdapter);
                 }
             }

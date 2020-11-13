@@ -258,6 +258,7 @@
 
 
         <Button
+            android:visibility="gone"
             android:id="@+id/btn_book_now"
             android:text="Chat Now"
             android:textAllCaps="false"

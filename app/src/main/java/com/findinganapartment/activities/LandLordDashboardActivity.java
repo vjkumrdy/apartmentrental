@@ -34,7 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LandLordDashboardActivity extends AppCompatActivity {
+public class
+LandLordDashboardActivity extends AppCompatActivity {
     RecyclerView property_recyclerView;
     List<PropertyPojo> a1;
     LandLordDashboardAdapter landLordDashboardAdapter;
@@ -140,7 +141,7 @@ public class LandLordDashboardActivity extends AppCompatActivity {
 
     public void serverData(){
         progressDialog = new ProgressDialog(LandLordDashboardActivity.this);
-        progressDialog.setMessage("Loading.....");
+        progressDialog.setMessage("Loading....");
         progressDialog.show();
 
         ApiService service = RetroClient.getRetrofitInstance().create(ApiService.class);

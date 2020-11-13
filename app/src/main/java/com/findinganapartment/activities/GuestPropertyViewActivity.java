@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewPropertyImagesActivity extends AppCompatActivity {
+public class GuestPropertyViewActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     SliderView sliderView;
     SliderAdapter sliderAdapter;
@@ -40,8 +40,7 @@ public class ViewPropertyImagesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details_of_properties);
-
+        setContentView(R.layout.activity_guest_property_view);
         getSupportActionBar().setTitle("Property Details");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,12 +83,12 @@ public class ViewPropertyImagesActivity extends AppCompatActivity {
         btn_book_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("pid").toString()+getIntent().getStringExtra("username").toString()+getIntent().getStringExtra("owner").toString(), Toast.LENGTH_SHORT).show();
-              //  Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("username").toString(), Toast.LENGTH_SHORT).show();
-             //   Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("owner").toString(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("pid").toString()+getIntent().getStringExtra("username").toString()+getIntent().getStringExtra("owner").toString(), Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("username").toString(), Toast.LENGTH_SHORT).show();
+                //   Toast.makeText(ViewPropertyImagesActivity.this,getIntent().getStringExtra("owner").toString(), Toast.LENGTH_SHORT).show();
 
 
-                Intent intent=new Intent(ViewPropertyImagesActivity.this, messagingactivity.class);
+                Intent intent=new Intent(GuestPropertyViewActivity.this, messagingactivity.class);
                 intent.putExtra("pid",getIntent().getStringExtra("pid"));
                 intent.putExtra("from",getIntent().getStringExtra("username"));
                 intent.putExtra("to",getIntent().getStringExtra("owner"));
@@ -111,7 +110,7 @@ public class ViewPropertyImagesActivity extends AppCompatActivity {
         serverData();
     }
     public void serverData(){
-        progressDialog = new ProgressDialog(ViewPropertyImagesActivity.this);
+        progressDialog = new ProgressDialog(GuestPropertyViewActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
@@ -123,10 +122,10 @@ public class ViewPropertyImagesActivity extends AppCompatActivity {
             public void onResponse(Call<List<GetPhotosPojo>> call, Response<List<GetPhotosPojo>> response) {
                 progressDialog.dismiss();
                 if(response.body()==null){
-                    Toast.makeText(ViewPropertyImagesActivity.this,"No data found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GuestPropertyViewActivity.this,"No data found", Toast.LENGTH_SHORT).show();
                 }else {
                     a1 = response.body();
-                    sliderAdapter = new SliderAdapter(ViewPropertyImagesActivity.this,a1);
+                    sliderAdapter = new SliderAdapter(GuestPropertyViewActivity.this,a1);
                     sliderView.setSliderAdapter(sliderAdapter);
 
                 }
@@ -135,7 +134,7 @@ public class ViewPropertyImagesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<GetPhotosPojo>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(ViewPropertyImagesActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GuestPropertyViewActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }

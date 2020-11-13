@@ -25,12 +25,13 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
 
     Context context;
     List<PropertyPojo> a1, propertyData;
-
-    public SearchPropertiesAdapter(Context context, List<PropertyPojo> property) {
+    String session,s;
+    public SearchPropertiesAdapter(Context context, List<PropertyPojo> property, String session) {
         this.context = context;
         this.a1 = property;
         propertyData = new ArrayList<>();
         propertyData.addAll(property);
+        this.session=session;
     }
 
     public void setMovieList(List<PropertyPojo> a1) {
@@ -63,13 +64,21 @@ public class SearchPropertiesAdapter extends RecyclerView.Adapter<SearchProperti
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsOfProperties.class);
-                intent.putExtra("image", a1.get(pos).getP_pic());
-                intent.putExtra("price", a1.get(pos).getP_price());
-                intent.putExtra("beds", a1.get(pos).getP_beds());
-                intent.putExtra("bath", a1.get(pos).getP_bath());
-                intent.putExtra("area_sq_ft", a1.get(pos).getP_area());
-                intent.putExtra("pets", a1.get(pos).getP_pets());
-                intent.putExtra("des", a1.get(pos).getDescription());
+                intent.putExtra("image",a1.get(pos).getP_pic());
+                intent.putExtra("pid",a1.get(pos).getPid());
+                intent.putExtra("price",a1.get(pos).getP_price());
+                intent.putExtra("property_typE",a1.get(pos).getP_type());
+                intent.putExtra("description",a1.get(pos).getDescription());
+                intent.putExtra("pname",a1.get(pos).getP_name());
+                intent.putExtra("beds",a1.get(pos).getP_beds());
+                intent.putExtra("bath",a1.get(pos).getP_bath());
+                intent.putExtra("area_sq_ft",a1.get(pos).getP_area());
+                intent.putExtra("pets",a1.get(pos).getP_pets());
+                intent.putExtra("location",a1.get(pos).getLocation());
+                intent.putExtra("type",a1.get(pos).getType());
+                intent.putExtra("per",a1.get(pos).getPer());
+                intent.putExtra("owner",a1.get(pos).getP_owner());
+                intent.putExtra("username",session);
                 context.startActivity(intent);
             }
         });

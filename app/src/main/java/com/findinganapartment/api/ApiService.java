@@ -8,7 +8,6 @@ import com.findinganapartment.models.PropertyPojo;
 import com.findinganapartment.models.ResponseData;
 import com.findinganapartment.models.msgs;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -57,10 +56,10 @@ public interface ApiService {
     );
 
 
-
+   // http://findingaapartment.com/rental/getphotos.php?
     @GET("/rental/getphotos.php?")
     Call<List<GetPhotosPojo>> getphotos
-            (@Query("pid") String pid );
+    (@Query("pid") String pid);
 
     /*@GET("rental/user_registration.php?")
     Call<ResponseData> userRegistration(
@@ -108,6 +107,15 @@ public interface ApiService {
             @Query("pass") String pwd
     );
 
+
+    @GET("/rental/updateprofile.php?")
+    Call<ResponseData> update_user_profile(
+            @Query("name") String name,
+            @Query("email") String email,
+            @Query("phoneno") String phoneno,
+            @Query("pwd") String pwd
+
+    );
 
     @GET("rental/forgotPassword.php")
     Call<ResponseData> forgotPassword
@@ -195,17 +203,17 @@ public interface ApiService {
     );
 
     @GET("/rental/getfavlist.php")
-    Call<List<PropertyPojo>> getfavlist( @Query("email") String email);
+    Call<List<PropertyPojo>> getfavlist(@Query("email") String email);
 
     @GET("/rental/chat.php")
-    Call<ResponseData> msglist(@Query("frm") String frm ,
-                               @Query("eto") String eto ,
+    Call<ResponseData> msglist(@Query("frm") String frm,
+                               @Query("eto") String eto,
                                @Query("pid") String pid,
                                @Query("message") String message);
 
     @GET("/rental/getchat.php")
     Call<List<msgs>> getchat(@Query("frm") String from,
                              @Query("eto") String to,
-                             @Query("pid") String pid );
+                             @Query("pid") String pid);
 
 }

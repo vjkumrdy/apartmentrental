@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
 import com.findinganapartment.Utils;
 import com.findinganapartment.api.ApiService;
@@ -48,7 +49,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(Utils.SHREF, Context.MODE_PRIVATE);
         session = sharedPreferences.getString("uname", "def-val");
 
-
+        image_view_user=(ImageView)findViewById(R.id.image_view_user);
         et_name=(EditText)findViewById(R.id.et_name);
         et_email=(EditText)findViewById(R.id.et_email);
         et_phno=(EditText)findViewById(R.id.et_phno);
@@ -59,7 +60,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // submitData();
+                submitData();
             }
         });
         et_email.setText(session);
@@ -86,6 +87,9 @@ public class EditYourProfileActivity extends AppCompatActivity {
                 et_phno.setText(user.getPhone());
                 et_pwd.setText(user.getPassword());
 
+                Glide.with(EditYourProfileActivity.this).load("http://findingaapartment.com/rental/"+a1.get(0).getPhoto()).into(image_view_user);
+              //  Glide.with(getApplicationContext()).load(user.getPhoto()).into(image_view_user);
+
             }
 
             @Override
@@ -95,7 +99,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
             }
         });
    }
-   /* private void submitData() {
+    private void submitData() {
         String name = et_name.getText().toString();
         String email = et_email.getText().toString();
         String phoneno= et_phno.getText().toString();
@@ -136,7 +140,7 @@ public class EditYourProfileActivity extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

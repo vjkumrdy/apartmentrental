@@ -113,6 +113,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyviewHolder> 
                 intent.putExtra("image",a1.get(pos).getP_pic());
                 intent.putExtra("pid",a1.get(pos).getPid());
                 intent.putExtra("price",a1.get(pos).getP_price());
+                intent.putExtra("per",a1.get(pos).getPer());
                 intent.putExtra("property_typE",a1.get(pos).getP_type());
                 intent.putExtra("description",a1.get(pos).getDescription());
                 intent.putExtra("pname",a1.get(pos).getP_name());

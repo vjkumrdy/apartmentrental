@@ -14,18 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.findinganapartment.R;
-import com.findinganapartment.activities.ViewPropertyImagesActivity;
+import com.findinganapartment.activities.GuestPropertyViewActivity;
 import com.findinganapartment.models.PropertyPojo;
 
 import java.util.List;
 
-public class AllPropertiesAdapter extends RecyclerView.Adapter<AllPropertiesAdapter.MyviewHolder> {
+public class GuestAdapter extends RecyclerView.Adapter<GuestAdapter.MyviewHolder> {
 
     Context context;
     List<PropertyPojo> a1;
     String session;
 
-    public AllPropertiesAdapter(Context context, List<PropertyPojo> categoty, String session) {
+    public GuestAdapter(Context context, List<PropertyPojo> categoty, String session) {
         this.context = context;
         this.a1 = categoty;
         this.session = session;
@@ -64,7 +64,7 @@ public class AllPropertiesAdapter extends RecyclerView.Adapter<AllPropertiesAdap
         holder.image_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context, ViewPropertyImagesActivity.class);
+                Intent intent=new Intent(context, GuestPropertyViewActivity.class);
                 intent.putExtra("image",a1.get(pos).getP_pic());
                 intent.putExtra("pid",a1.get(pos).getPid());
                 intent.putExtra("price",a1.get(pos).getP_price());
@@ -127,12 +127,12 @@ public class AllPropertiesAdapter extends RecyclerView.Adapter<AllPropertiesAdap
                 public void onClick(View view) {
                     if(img_fav.getTag().toString().equals("heart")){
                         img_fav.setTag("fav");
-                       img_fav.setImageResource(R.drawable.ic_fav);
-                      //  Toast.makeText(context," Red clicked",Toast.LENGTH_LONG).show();
+                        img_fav.setImageResource(R.drawable.ic_fav);
+                        //  Toast.makeText(context," Red clicked",Toast.LENGTH_LONG).show();
                     }else{
                         img_fav.setTag("heart");
-                       img_fav.setImageResource(R.drawable.ic_heart1);
-                      //  Toast.makeText(context," Black clicked",Toast.LENGTH_LONG).show();
+                        img_fav.setImageResource(R.drawable.ic_heart1);
+                        //  Toast.makeText(context," Black clicked",Toast.LENGTH_LONG).show();
                     }
                 }
             });

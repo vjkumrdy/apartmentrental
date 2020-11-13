@@ -42,10 +42,13 @@
         android:layout_below="@+id/et_name"
         android:background="@drawable/input_design"
         android:padding="@dimen/_12sdp"
+        android:clickable="false"
+        android:enabled="false"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:textSize="@dimen/_13sdp"
         android:layout_marginTop="@dimen/_6sdp"
+
         android:hint="Email"
         android:inputType="text"
         android:textColor="@color/colorPrimaryDark"

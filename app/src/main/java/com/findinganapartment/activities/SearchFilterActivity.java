@@ -84,7 +84,7 @@ public class SearchFilterActivity extends AppCompatActivity {
                     }
                     else {
                         a1 = response.body();
-                        searchPropertiesAdapter=new SearchPropertiesAdapter(SearchFilterActivity.this,a1);  //attach adapter class with therecyclerview
+                        searchPropertiesAdapter=new SearchPropertiesAdapter(SearchFilterActivity.this,a1,session);  //attach adapter class with therecyclerview
                         property_recyclerView.setAdapter(searchPropertiesAdapter);
                     }
                 }

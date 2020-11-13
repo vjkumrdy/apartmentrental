@@ -63,6 +63,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
                 Intent intent=new Intent(context, ViewPropertyImagesActivity.class);
                 intent.putExtra("image",a1.get(pos).getP_pic());
                 intent.putExtra("pid",a1.get(pos).getPid());
+                intent.putExtra("per",a1.get(pos).getPer());
                 intent.putExtra("price",a1.get(pos).getP_price());
                 intent.putExtra("beds",a1.get(pos).getP_beds());
                 intent.putExtra("bath",a1.get(pos).getP_bath());
@@ -70,6 +71,10 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Myview
                 intent.putExtra("pets",a1.get(pos).getP_pets());
                 intent.putExtra("location",a1.get(pos).getLocation());
                 intent.putExtra("type",a1.get(pos).getType());
+                intent.putExtra("property_typE",a1.get(pos).getP_type());
+                intent.putExtra("description",a1.get(pos).getDescription());
+                intent.putExtra("owner",a1.get(pos).getP_owner());
+                intent.putExtra("pname",a1.get(pos).getP_name());
                 intent.putExtra("username",session);
                 context.startActivity(intent);
             }

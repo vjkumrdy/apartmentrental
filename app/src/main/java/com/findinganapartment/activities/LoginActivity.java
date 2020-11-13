@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         login_guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this, AllPropertiesActivity.class);
+                Intent intent=new Intent(LoginActivity.this, GuestAllPropertiesActivity.class);
                 startActivity(intent);
 
             }
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         login_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, AdminLoginActivity.class));
+                startActivity(new Intent(LoginActivity.this,AdminLoginActivity.class));
 
             }
         });
@@ -99,16 +99,30 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     public void checkingTenantLandlord(){
+        if (cb_land_lord.isChecked() && cb_tenant.isChecked()) {
+            Toast.makeText(this, "Please Choose One Role", LENGTH_SHORT).show();
+            return;
+        }
+
+        if (cb_land_lord.isChecked()==false && cb_tenant.isChecked()==false) {
+            Toast.makeText(this, "Please select any one", LENGTH_SHORT).show();
+            return;
+        }
+        if(et_email.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter email ID", LENGTH_SHORT).show();
+            return;
+        }
+        if(et_password.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please enter password", LENGTH_SHORT).show();
+            return;
+        }
         if(cb_tenant.isChecked()){
             str="Tenant";
             tenantloginData();
         }
-        else if (cb_land_lord.isChecked()){
+        if (cb_land_lord.isChecked()){
             str="Land Lord";
             landLordloginData();
-        }
-        else{
-            Toast.makeText(this, "Please Choose Role", LENGTH_SHORT).show();
         }
     }
     public  void tenantloginData() {
