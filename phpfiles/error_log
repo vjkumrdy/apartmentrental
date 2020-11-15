@@ -1,0 +1,8 @@
+[09-Nov-2020 12:27:35 UTC] PHP Notice:  Undefined index: id in /home/etoez0y6xmgy/public_html/rental/deleteproperty.php on line 2
+[09-Nov-2020 12:27:35 UTC] PHP Warning:  mysqli_query(): Empty query in /home/etoez0y6xmgy/public_html/rental/deleteproperty.php on line 13
+[09-Nov-2020 12:27:54 UTC] PHP Notice:  Undefined index: id in /home/etoez0y6xmgy/public_html/rental/deleteproperty.php on line 2
+[09-Nov-2020 12:27:54 UTC] PHP Warning:  mysqli_query(): Empty query in /home/etoez0y6xmgy/public_html/rental/deleteproperty.php on line 13
+[09-Nov-2020 12:30:30 UTC] PHP Notice:  Undefined index: id in /home/etoez0y6xmgy/public_html/rental/deleteproperty.php on line 2
+[09-Nov-2020 12:31:32 UTC] PHP Notice:  Undefined index: id in /home/etoez0y6xmgy/public_html/rental/deleteproperty.php on line 2
+[12-Nov-2020 03:03:52 UTC] PHP Notice:  Undefined index: frm in /home/etoez0y6xmgy/public_html/rental/getchat.php on line 5
+[12-Nov-2020 03:03:52 UTC] PHP Notice:  Undefined index: eto in /home/etoez0y6xmgy/public_html/rental/getchat.php on line 6
